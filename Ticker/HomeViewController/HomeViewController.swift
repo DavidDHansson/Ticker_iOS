@@ -73,8 +73,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         crashButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
         crashButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
     }
-    
-    
+      
     @objc func crash() {
         fatalError()
     }
