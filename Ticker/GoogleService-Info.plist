@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>952703818107-b6fn4d7g3rp08o6u0uv3gt0n9keh61jh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.952703818107-b6fn4d7g3rp08o6u0uv3gt0n9keh61jh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAntB68DLHsCHj4XsghAE9j4wAN11Tpuvc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>952703818107</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>David-Hansson.Ticker</string>
+	<key>PROJECT_ID</key>
+	<string>prog-eksamensprojekt</string>
+	<key>STORAGE_BUCKET</key>
+	<string>prog-eksamensprojekt.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:952703818107:ios:e16e9e5089fb58caecc5de</string>
+</dict>
+</plist>
