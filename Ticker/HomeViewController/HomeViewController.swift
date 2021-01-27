@@ -16,8 +16,13 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     
-    // MARK: Variables
     
+    private let crashButton: UIButton = {
+        let b = UIButton(frame: .zero)
+        b.setTitle("Crash", for: .normal)
+        b.backgroundColor = .red
+        return b
+    }()
     
     
     // MARK: Object lifecycle
@@ -53,8 +58,25 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        view.addSubview(crashButton)
+        
+        // Define Layout
+        defineLayout()
+        
+        crashButton.addTarget(self, action: #selector(crash), for: .touchUpInside)
     }
     
+    func defineLayout() {
+        crashButton.translatesAutoresizingMaskIntoConstraints = false
+        crashButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        crashButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        crashButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        crashButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
+    }
+    
+    @objc func crash() {
+        fatalError()
+    }
     
     // MARK: Display something
     
