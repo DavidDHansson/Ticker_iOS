@@ -9,14 +9,19 @@
 import UIKit
 
 enum Home {
-    // MARK: Use cases
-    
-    enum Something {
+    enum Articles {
         struct Request {
+            let page: Int?
         }
         struct Response {
+            let articles: [Article]?
+            let page: Int
+            let error: Error?
         }
         struct ViewModel {
+            let articles: [Article]?
+            let page: Int
+            let errorDescription: String?
         }
     }
 }

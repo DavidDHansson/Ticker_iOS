@@ -27,10 +27,14 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func setupTabBar() {
         
         let homeNVC = UINavigationController(rootViewController: HomeViewController())
-        homeNVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "menu-item-myday"), selectedImage: nil)
+        homeNVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)
+        
+        let settingsNVC = UINavigationController(rootViewController: SettingsViewController())
+        settingsNVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)
         
         viewControllers = [
-            homeNVC
+            homeNVC,
+            settingsNVC
         ]
         
         selectedIndex = 0

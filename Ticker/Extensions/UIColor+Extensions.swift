@@ -10,6 +10,10 @@ import UIKit
 
 extension UIColor {
     
+    struct Custom {
+        
+    }
+    
     convenience init(hex: Int) {
         self.init(hex: hex, a: 1.0)
     }

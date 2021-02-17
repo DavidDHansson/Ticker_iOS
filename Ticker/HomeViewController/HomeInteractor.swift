@@ -9,7 +9,6 @@
 import UIKit
 
 protocol HomeBusinessLogic {
-    func doSomething(request: Home.Something.Request)
 }
 
 protocol HomeDataStore {
@@ -21,13 +20,5 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     var worker: HomeWorker?
     //var name: String = ""
     
-    // MARK: Do something
-    
-    func doSomething(request: Home.Something.Request) {
-        worker = HomeWorker()
-        worker?.doSomeWork()
-        
-        let response = Home.Something.Response()
-        presenter?.presentSomething(response: response)
-    }
+
 }

@@ -21,6 +21,20 @@
 		EB11C9A725C196C0009E128C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11C9A125C196C0009E128C /* HomeInteractor.swift */; };
 		EB8E783E25C19B2B00883DFD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */; };
 		EB8E784325C19BAE00883DFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */; };
+		EBA337F425DD8A9500D12457 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337F325DD8A9500D12457 /* Article.swift */; };
+		EBA337F925DD8B1900D12457 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337F825DD8B1900D12457 /* Post.swift */; };
+		EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337FD25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift */; };
+		EBA3380325DD964E00D12457 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */; };
+		EBCF795125DD2EA300043559 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795025DD2EA300043559 /* Theme.swift */; };
+		EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */; };
+		EBCF795725DD36CF00043559 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795625DD36CF00043559 /* ThemeButton.swift */; };
+		EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795925DD3D5100043559 /* SettingsPresenter.swift */; };
+		EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795A25DD3D5100043559 /* SettingsWorker.swift */; };
+		EBCF796125DD3D5100043559 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795B25DD3D5100043559 /* SettingsRouter.swift */; };
+		EBCF796225DD3D5100043559 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795C25DD3D5100043559 /* SettingsModels.swift */; };
+		EBCF796325DD3D5100043559 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795D25DD3D5100043559 /* SettingsViewController.swift */; };
+		EBCF796425DD3D5100043559 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795E25DD3D5100043559 /* SettingsInteractor.swift */; };
+		EBD849DC25DDA7FE0055805C /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD849DB25DDA7FE0055805C /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +56,20 @@
 		EB11C9A125C196C0009E128C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EBA337F325DD8A9500D12457 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		EBA337F825DD8B1900D12457 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EBA337FD25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerArticleCell.swift; sourceTree = "<group>"; };
+		EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
+		EBCF795025DD2EA300043559 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
+		EBCF795625DD36CF00043559 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
+		EBCF795925DD3D5100043559 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		EBCF795A25DD3D5100043559 /* SettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
+		EBCF795B25DD3D5100043559 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		EBCF795C25DD3D5100043559 /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
+		EBCF795D25DD3D5100043559 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EBCF795E25DD3D5100043559 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		EBD849DB25DDA7FE0055805C /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +117,11 @@
 				EB11C97025C191C6009E128C /* AppDelegate.swift */,
 				EB11C97225C191C6009E128C /* SceneDelegate.swift */,
 				EB11C97425C191C6009E128C /* TabBarViewController.swift */,
+				EBCF795025DD2EA300043559 /* Theme.swift */,
+				EBA337F225DD8A8500D12457 /* Models */,
+				EBCF796625DD3D5900043559 /* SettingsViewController */,
 				EB11C98925C19474009E128C /* HomeViewController */,
+				EBCF797C25DD855400043559 /* Custom views */,
 				EB8E784025C19B6600883DFD /* Extensions */,
 				EB11C97925C191C7009E128C /* Assets.xcassets */,
 				EB11C97B25C191C7009E128C /* LaunchScreen.storyboard */,
@@ -108,6 +140,7 @@
 				EB11C99F25C196C0009E128C /* HomeModels.swift */,
 				EB11C9A025C196C0009E128C /* HomeViewController.swift */,
 				EB11C9A125C196C0009E128C /* HomeInteractor.swift */,
+				EBA3380025DD8C6000D12457 /* Custom Views */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -116,8 +149,49 @@
 			isa = PBXGroup;
 			children = (
 				EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */,
+				EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */,
+				EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */,
+				EBD849DB25DDA7FE0055805C /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EBA337F225DD8A8500D12457 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EBA337F325DD8A9500D12457 /* Article.swift */,
+				EBA337F825DD8B1900D12457 /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EBA3380025DD8C6000D12457 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				EBA337FD25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		EBCF796625DD3D5900043559 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EBCF795925DD3D5100043559 /* SettingsPresenter.swift */,
+				EBCF795A25DD3D5100043559 /* SettingsWorker.swift */,
+				EBCF795B25DD3D5100043559 /* SettingsRouter.swift */,
+				EBCF795C25DD3D5100043559 /* SettingsModels.swift */,
+				EBCF795D25DD3D5100043559 /* SettingsViewController.swift */,
+				EBCF795E25DD3D5100043559 /* SettingsInteractor.swift */,
+			);
+			path = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		EBCF797C25DD855400043559 /* Custom views */ = {
+			isa = PBXGroup;
+			children = (
+				EBCF795625DD36CF00043559 /* ThemeButton.swift */,
+			);
+			path = "Custom views";
 			sourceTree = "<group>";
 		};
 		F050B2EB6F2D9AABC1075336 /* Frameworks */ = {
@@ -262,15 +336,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB11C97525C191C6009E128C /* TabBarViewController.swift in Sources */,
+				EBCF796125DD3D5100043559 /* SettingsRouter.swift in Sources */,
 				EB8E783E25C19B2B00883DFD /* UIColor+Extensions.swift in Sources */,
 				EB11C9A425C196C0009E128C /* HomeRouter.swift in Sources */,
+				EBA337F425DD8A9500D12457 /* Article.swift in Sources */,
 				EB11C97125C191C6009E128C /* AppDelegate.swift in Sources */,
+				EBD849DC25DDA7FE0055805C /* UIView+Extensions.swift in Sources */,
+				EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */,
+				EBCF795125DD2EA300043559 /* Theme.swift in Sources */,
 				EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */,
+				EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */,
+				EBCF796425DD3D5100043559 /* SettingsInteractor.swift in Sources */,
+				EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */,
+				EBCF795725DD36CF00043559 /* ThemeButton.swift in Sources */,
+				EBA337F925DD8B1900D12457 /* Post.swift in Sources */,
+				EBA3380325DD964E00D12457 /* CALayer+Extensions.swift in Sources */,
 				EB11C97325C191C6009E128C /* SceneDelegate.swift in Sources */,
 				EB11C9A325C196C0009E128C /* HomeWorker.swift in Sources */,
 				EB11C9A725C196C0009E128C /* HomeInteractor.swift in Sources */,
 				EB11C9A225C196C0009E128C /* HomePresenter.swift in Sources */,
 				EB11C9A525C196C0009E128C /* HomeModels.swift in Sources */,
+				EBCF796225DD3D5100043559 /* SettingsModels.swift in Sources */,
+				EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */,
+				EBCF796325DD3D5100043559 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
