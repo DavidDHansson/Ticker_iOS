@@ -11,8 +11,12 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var appConfiguration: AppConfiguration!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
+        
+        appConfiguration = AppConfiguration(withApplication: application, launchOptions: launchOptions)
+        
         return true
     }
 

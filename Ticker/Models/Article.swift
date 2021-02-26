@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Article {
+struct Article: Codable {
     let title: String
     let description: String?
     let id: String

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol HomeBusinessLogic {
+    func fetchContent(request: Home.Articles.Request)
 }
 
 protocol HomeDataStore {
@@ -20,5 +21,17 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     var worker: HomeWorker?
     //var name: String = ""
     
+    func fetchContent(request: Home.Articles.Request) {
+        
+        let apiRequest = APIRequest(endpoint: "", method: .get, parameters: nil)
+        APIManager.shared.callAPI(of: [Article].self, withRequest: apiRequest, completion: { [weak self] (result) in
+            switch result {
+            case .success(let articles):
+                self?.presenter?.presentArticles(response: .init(articles: articles, page: request.page, error: nil))
+            case .failure(let error):
+                self?.presenter?.presentArticles(response: .init(articles: nil, page: request.page, error: error))
+            }
+        })
+    }
 
 }

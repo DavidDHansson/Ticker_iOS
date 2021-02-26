@@ -9,7 +9,7 @@
 import UIKit
 
 protocol HomeDisplayLogic: class {
-    
+    func displayArticles(viewModel: Home.Articles.ViewModel)
 }
 
 class HomeViewController: UIViewController, HomeDisplayLogic {
@@ -30,7 +30,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }()
     
     private var viewModel: Home.Articles.ViewModel?
-    private var page: Int = 0
     
     // MARK: Object lifecycle
     
@@ -81,13 +80,15 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         tableView.delegate = self
         tableView.dataSource = self
         
-        viewModel = Home.Articles.ViewModel(articles: [
-            Article(title: "Demant-kursmål hæves", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/19778/23666642-dem.jpg", provider: "euroinvester"),
-            Article(title: "Niclas Faurby: Kan du forestille dig, at din formue er mindre om 15 år?", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/18729/23652733-penge.png", provider: "euroinvester"),
-            Article(title: "Warren Buffett satser på amerikansk medicinalaktie - det mener analytikerne om den", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/19776/23666633-g.jpg", provider: "euroinvester"),
-            Article(title: "Kendt tech-investor efter Gravitys faldt kraftigt: Det mener jeg om aktien", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/16636/23613336-gravity.jpg", provider: "euroinvester")
-        ], page: 0, errorDescription: nil)
+//        viewModel = Home.Articles.ViewModel(articles: [
+//            Article(title: "Demant-kursmål hæves", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/19778/23666642-dem.jpg", provider: "euroinvester"),
+//            Article(title: "Niclas Faurby: Kan du forestille dig, at din formue er mindre om 15 år?", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/18729/23652733-penge.png", provider: "euroinvester"),
+//            Article(title: "Warren Buffett satser på amerikansk medicinalaktie - det mener analytikerne om den", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/19776/23666633-g.jpg", provider: "euroinvester"),
+//            Article(title: "Kendt tech-investor efter Gravitys faldt kraftigt: Det mener jeg om aktien", description: nil, id: "1", date: Date(), imgURL: "https://euroinvestor.bmcdn.dk/media/cache/resolve/image_540x303/image/1/16636/23613336-gravity.jpg", provider: "euroinvester")
+//        ], page: 0, errorDescription: nil)
         
+        
+        interactor?.fetchContent(request: .init(page: 0))
     }
     
     func defineLayout() {
@@ -96,6 +97,10 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    
+    func displayArticles(viewModel: Home.Articles.ViewModel) {
+        self.viewModel = viewModel
     }
     
 }
@@ -107,10 +112,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let article = viewModel?.articles?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewControllerArticleCell", for: indexPath) as? HomeViewControllerArticleCell else { return UITableViewCell(frame: .zero) }
-        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title, imageURL: article.imgURL)
-        cell.configure(withViewModel: viewModel)
-        return cell
+//        guard let article = viewModel?.articles?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewControllerArticleCell", for: indexPath) as? HomeViewControllerArticleCell else { return UITableViewCell(frame: .zero) }
+//        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title, imageURL: article.imgURL)
+//        cell.configure(withViewModel: viewModel)
+//        return cell
+        return UITableViewCell(frame: .zero) 
     }
     
     

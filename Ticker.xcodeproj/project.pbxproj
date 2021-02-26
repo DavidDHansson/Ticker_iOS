@@ -25,9 +25,13 @@
 		EBA337F925DD8B1900D12457 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337F825DD8B1900D12457 /* Post.swift */; };
 		EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337FD25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift */; };
 		EBA3380325DD964E00D12457 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */; };
-		EBCF795125DD2EA300043559 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795025DD2EA300043559 /* Theme.swift */; };
+		EBABAA3925E94F9500E78653 /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBABAA3825E94F9500E78653 /* APIManagerProtocol.swift */; };
+		EBABAA3C25E94FA900E78653 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBABAA3B25E94FA900E78653 /* APIManager.swift */; };
+		EBABAA3F25E9508200E78653 /* AlamofireDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBABAA3E25E9508200E78653 /* AlamofireDriver.swift */; };
+		EBABAA4325E95BA900E78653 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBABAA4225E95BA900E78653 /* AppConfiguration.swift */; };
+		EBABAA4625E95C4500E78653 /* APIManagerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBABAA4525E95C4500E78653 /* APIManagerConfigurator.swift */; };
+		EBABAA4925E95CD100E78653 /* FirebaseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBABAA4825E95CD100E78653 /* FirebaseConfigurator.swift */; };
 		EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */; };
-		EBCF795725DD36CF00043559 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795625DD36CF00043559 /* ThemeButton.swift */; };
 		EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795925DD3D5100043559 /* SettingsPresenter.swift */; };
 		EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795A25DD3D5100043559 /* SettingsWorker.swift */; };
 		EBCF796125DD3D5100043559 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795B25DD3D5100043559 /* SettingsRouter.swift */; };
@@ -60,9 +64,13 @@
 		EBA337F825DD8B1900D12457 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EBA337FD25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerArticleCell.swift; sourceTree = "<group>"; };
 		EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
-		EBCF795025DD2EA300043559 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		EBABAA3825E94F9500E78653 /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
+		EBABAA3B25E94FA900E78653 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		EBABAA3E25E9508200E78653 /* AlamofireDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireDriver.swift; sourceTree = "<group>"; };
+		EBABAA4225E95BA900E78653 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		EBABAA4525E95C4500E78653 /* APIManagerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerConfigurator.swift; sourceTree = "<group>"; };
+		EBABAA4825E95CD100E78653 /* FirebaseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfigurator.swift; sourceTree = "<group>"; };
 		EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
-		EBCF795625DD36CF00043559 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
 		EBCF795925DD3D5100043559 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		EBCF795A25DD3D5100043559 /* SettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
 		EBCF795B25DD3D5100043559 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
@@ -117,7 +125,8 @@
 				EB11C97025C191C6009E128C /* AppDelegate.swift */,
 				EB11C97225C191C6009E128C /* SceneDelegate.swift */,
 				EB11C97425C191C6009E128C /* TabBarViewController.swift */,
-				EBCF795025DD2EA300043559 /* Theme.swift */,
+				EBABAA4125E95B8F00E78653 /* AppConfiguration */,
+				EBABAA3525E94F6D00E78653 /* Managers */,
 				EBA337F225DD8A8500D12457 /* Models */,
 				EBCF796625DD3D5900043559 /* SettingsViewController */,
 				EB11C98925C19474009E128C /* HomeViewController */,
@@ -173,6 +182,42 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		EBABAA3525E94F6D00E78653 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EBABAA3625E94F7A00E78653 /* APIManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		EBABAA3625E94F7A00E78653 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				EBABAA3725E94F8300E78653 /* Drivers */,
+				EBABAA3825E94F9500E78653 /* APIManagerProtocol.swift */,
+				EBABAA3B25E94FA900E78653 /* APIManager.swift */,
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
+		EBABAA3725E94F8300E78653 /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				EBABAA3E25E9508200E78653 /* AlamofireDriver.swift */,
+			);
+			path = Drivers;
+			sourceTree = "<group>";
+		};
+		EBABAA4125E95B8F00E78653 /* AppConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				EBABAA4225E95BA900E78653 /* AppConfiguration.swift */,
+				EBABAA4525E95C4500E78653 /* APIManagerConfigurator.swift */,
+				EBABAA4825E95CD100E78653 /* FirebaseConfigurator.swift */,
+			);
+			path = AppConfiguration;
+			sourceTree = "<group>";
+		};
 		EBCF796625DD3D5900043559 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,7 +234,6 @@
 		EBCF797C25DD855400043559 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
-				EBCF795625DD36CF00043559 /* ThemeButton.swift */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -335,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBABAA3C25E94FA900E78653 /* APIManager.swift in Sources */,
 				EB11C97525C191C6009E128C /* TabBarViewController.swift in Sources */,
 				EBCF796125DD3D5100043559 /* SettingsRouter.swift in Sources */,
 				EB8E783E25C19B2B00883DFD /* UIColor+Extensions.swift in Sources */,
@@ -343,15 +388,18 @@
 				EB11C97125C191C6009E128C /* AppDelegate.swift in Sources */,
 				EBD849DC25DDA7FE0055805C /* UIView+Extensions.swift in Sources */,
 				EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */,
-				EBCF795125DD2EA300043559 /* Theme.swift in Sources */,
+				EBABAA4925E95CD100E78653 /* FirebaseConfigurator.swift in Sources */,
 				EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */,
+				EBABAA3925E94F9500E78653 /* APIManagerProtocol.swift in Sources */,
 				EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */,
 				EBCF796425DD3D5100043559 /* SettingsInteractor.swift in Sources */,
 				EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */,
-				EBCF795725DD36CF00043559 /* ThemeButton.swift in Sources */,
 				EBA337F925DD8B1900D12457 /* Post.swift in Sources */,
 				EBA3380325DD964E00D12457 /* CALayer+Extensions.swift in Sources */,
+				EBABAA4325E95BA900E78653 /* AppConfiguration.swift in Sources */,
+				EBABAA3F25E9508200E78653 /* AlamofireDriver.swift in Sources */,
 				EB11C97325C191C6009E128C /* SceneDelegate.swift in Sources */,
+				EBABAA4625E95C4500E78653 /* APIManagerConfigurator.swift in Sources */,
 				EB11C9A325C196C0009E128C /* HomeWorker.swift in Sources */,
 				EB11C9A725C196C0009E128C /* HomeInteractor.swift in Sources */,
 				EB11C9A225C196C0009E128C /* HomePresenter.swift in Sources */,

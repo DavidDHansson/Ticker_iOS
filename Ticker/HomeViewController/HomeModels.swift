@@ -11,7 +11,7 @@ import UIKit
 enum Home {
     enum Articles {
         struct Request {
-            let page: Int?
+            let page: Int
         }
         struct Response {
             let articles: [Article]?
