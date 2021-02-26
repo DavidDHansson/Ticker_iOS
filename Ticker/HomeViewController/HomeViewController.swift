@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     var interactor: HomeBusinessLogic?
     var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     
+    private let refreshControl = UIRefreshControl()
     private let tableView: UITableView = {
         let t = UITableView(frame: .zero, style: .plain)
         t.backgroundColor = .clear
@@ -30,6 +31,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }()
     
     private var viewModel: Home.Articles.ViewModel?
+    private var page: Int = 0
     
     // MARK: Object lifecycle
     
@@ -80,10 +82,15 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Refresh control
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshArticles), for: .valueChanged)
+        
+        // Fetch first page of articles
         interactor?.fetchContent(request: .init(page: 0))
     }
     
-    func defineLayout() {
+    private func defineLayout() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -91,9 +98,34 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
+    @objc func refreshArticles() {
+        page = 0
+        interactor?.fetchContent(request: .init(page: 0))
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        guard distanceFromBottom < height else { return }
+        guard page == 0 || (page + 1) * 20 == (viewModel?.articles?.count ?? 0) else { return }
+        
+        page += 1
+        interactor?.fetchContent(request: .init(page: page))
+    }
+    
     func displayArticles(viewModel: Home.Articles.ViewModel) {
         self.viewModel = viewModel
-        tableView.reloadData()
+        
+        if let errorString = viewModel.errorDescription {
+            let alert = UIAlertController(title: "Error", message: errorString, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            refreshControl.endRefreshing()
+            tableView.reloadData()
+        }
     }
     
 }

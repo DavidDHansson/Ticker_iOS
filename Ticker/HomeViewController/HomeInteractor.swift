@@ -13,21 +13,29 @@ protocol HomeBusinessLogic {
 }
 
 protocol HomeDataStore {
-    //var name: String { get set }
+    var articles: [Article] { get set }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
-    //var name: String = ""
+    
+    var articles: [Article] = []
     
     func fetchContent(request: Home.Articles.Request) {
+    
+        if request.page == 0 {
+            articles.removeAll()
+        }
         
-        let apiRequest = APIRequest(endpoint: "home", method: .get, parameters: nil)
+        let apiRequest = APIRequest(endpoint: "home?page=\(request.page)&per=\(20)", method: .get, parameters: nil)
         APIManager.shared.callAPI(of: [Article].self, withRequest: apiRequest, completion: { [weak self] (result) in
             switch result {
             case .success(let articles):
-                self?.presenter?.presentArticles(response: .init(articles: articles, page: request.page, error: nil))
+                
+                self?.articles += articles
+                
+                self?.presenter?.presentArticles(response: .init(articles: self?.articles, page: request.page, error: nil))
             case .failure(let error):
                 self?.presenter?.presentArticles(response: .init(articles: nil, page: request.page, error: error))
             }
