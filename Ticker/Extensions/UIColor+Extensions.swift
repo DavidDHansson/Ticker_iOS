@@ -10,10 +10,6 @@ import UIKit
 
 extension UIColor {
     
-    struct Custom {
-        
-    }
-    
     convenience init(hex: Int) {
         self.init(hex: hex, a: 1.0)
     }
@@ -30,4 +26,11 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: a)
     }
     
+}
+
+extension UIColor {
+    struct Ticker {
+        static let viewBackgroundColor = UIColor(named: "viewBackgroundColor")
+        static let textColor = UIColor(named: "textColor")
+    }
 }

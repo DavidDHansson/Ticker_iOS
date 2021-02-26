@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol HomeDisplayLogic: class {
     func displayArticles(viewModel: Home.Articles.ViewModel)
@@ -64,13 +65,14 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+//        navigationController?.isNavigationBarHidden = true
+        navigationController?.title = "Home"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(r: 25, g: 26, b: 27)
+        view.backgroundColor = UIColor.Ticker.viewBackgroundColor
         
         // Add Subviews
         view.addSubview(tableView)
@@ -140,8 +142,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let article = viewModel?.articles?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewControllerArticleCell", for: indexPath) as? HomeViewControllerArticleCell else { return UITableViewCell(frame: .zero) }
         let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", imageURL: article.img)
         cell.configure(withViewModel: viewModel)
+        cell.openArticle = { [weak self] in
+            guard let url = URL(string: article.link), UIApplication.shared.canOpenURL(url) else {
+                 // TODO: Alert
+                return
+            }
+            
+            let vc = SFSafariViewController(url: url)
+            self?.present(vc, animated: true, completion: nil)
+        }
         return cell
     }
-    
     
 }

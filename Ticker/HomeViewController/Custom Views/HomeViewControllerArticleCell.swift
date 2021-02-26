@@ -15,11 +15,14 @@ class HomeViewControllerArticleCell: UITableViewCell {
         let imageURL: String?
     }
     
+    var url: String?
+    
     private var titleLabel: UILabel = {
         let l = UILabel(frame: .zero)
         l.textAlignment = .left
         l.numberOfLines = 0
-        l.textColor = .white
+        l.textColor = UIColor.Ticker.textColor
+        l.font = Font.SanFranciscoDisplay.medium.size(18)
         return l
     }()
     
@@ -33,20 +36,33 @@ class HomeViewControllerArticleCell: UITableViewCell {
     
     private let view: UIView = {
         let v = UIView(frame: .zero)
-        v.backgroundColor = .black
+        v.backgroundColor = UIColor.Ticker.viewBackgroundColor
         return v
     }()
+    
+    public var openArticle: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        // Colors
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         
+        // Add subviews
         view.addSubview(titleLabel)
         view.addSubview(imgView)
         contentView.addSubview(view)
         
+        // Define Layout
+        defineLayout()
+        
+        // ImageView target
+        imgView.isUserInteractionEnabled = true
+        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
+    }
+    
+    private func defineLayout() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
@@ -66,8 +82,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
         imgView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
         imgView.heightAnchor.constraint(equalToConstant: 180).isActive = true
         imgView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-        
-        
     }
     
     override func draw(_ rect: CGRect) {
@@ -88,15 +102,19 @@ class HomeViewControllerArticleCell: UITableViewCell {
         imgView.roundCorners(corners: .allCorners, radius: 8)
     }
     
+    override func prepareForReuse() {
+        titleLabel.text = nil
+        imgView.image = nil
+    }
+    
     public func configure(withViewModel viewModel: ViewModel) {
         titleLabel.text = viewModel.title
         guard let rawURL = viewModel.imageURL, let url = URL(string: rawURL) else { return }
         imgView.af.setImage(withURL: url) // TODO: Use with placeholder image
     }
     
-    override func prepareForReuse() {
-        titleLabel.text = nil
-        imgView.image = nil
+    @objc func openInBrowser() {
+        openArticle?()
     }
     
     required init?(coder: NSCoder) {
