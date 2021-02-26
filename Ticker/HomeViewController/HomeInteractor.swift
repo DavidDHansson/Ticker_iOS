@@ -23,7 +23,7 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     
     func fetchContent(request: Home.Articles.Request) {
         
-        let apiRequest = APIRequest(endpoint: "", method: .get, parameters: nil)
+        let apiRequest = APIRequest(endpoint: "home", method: .get, parameters: nil)
         APIManager.shared.callAPI(of: [Article].self, withRequest: apiRequest, completion: { [weak self] (result) in
             switch result {
             case .success(let articles):

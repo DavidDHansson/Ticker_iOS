@@ -8,10 +8,9 @@
 import UIKit
 
 struct Article: Codable {
-    let title: String
-    let description: String?
-    let id: String
-    let date: Date
-    let imgURL: String?
+    let img: String?
+    let link: String
     let provider: String
+    let title: String?
+    let date: [String: Int]
 }
