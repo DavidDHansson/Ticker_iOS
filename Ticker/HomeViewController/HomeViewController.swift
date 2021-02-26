@@ -66,7 +66,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        navigationController?.isNavigationBarHidden = true
-        navigationController?.title = "Home"
+        title = "Home"
     }
     
     override func viewDidLoad() {
@@ -94,7 +94,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     private func defineLayout() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -107,6 +107,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
+        // Pagination
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
@@ -150,6 +151,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             let vc = SFSafariViewController(url: url)
             self?.present(vc, animated: true, completion: nil)
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
         }
         return cell
     }
