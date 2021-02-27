@@ -26,8 +26,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     private func setupTabBar() {
         
+        tabBar.tintColor = UIColor.Ticker.mainColorReversed
+        
         let homeNVC = UINavigationController(rootViewController: HomeViewController())
-        homeNVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)
+        homeNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)
         
         let settingsNVC = UINavigationController(rootViewController: SettingsViewController())
         settingsNVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)

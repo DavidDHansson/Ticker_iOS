@@ -31,6 +31,12 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         return t
     }()
     
+    private let statusBarView: UIView = {
+        let v = UIView(frame: .zero)
+        v.backgroundColor = UIColor.Ticker.subViewBackgroundColor
+        return v
+    }()
+    
     private var viewModel: Home.Articles.ViewModel?
     private var page: Int = 0
     
@@ -65,8 +71,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        navigationController?.isNavigationBarHidden = true
-        title = "Home"
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidLoad() {
@@ -76,6 +81,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         
         // Add Subviews
         view.addSubview(tableView)
+        view.addSubview(statusBarView)
         
         // Define Layout
         defineLayout()
@@ -93,6 +99,15 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     private func defineLayout() {
+        let key = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let height = key?.windowScene?.statusBarManager?.statusBarFrame.height
+
+        statusBarView.translatesAutoresizingMaskIntoConstraints = false
+        statusBarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        statusBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        statusBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        statusBarView.heightAnchor.constraint(equalToConstant: height ?? 0).isActive = true
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -131,8 +146,18 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         }
     }
     
+    private func openURL(_ urlRaw: String?) {
+        guard let url = URL(string: urlRaw ?? ""), UIApplication.shared.canOpenURL(url) else {
+            // TODO: Alert
+           return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true, completion: nil)
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+    }
+    
 }
-
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -141,19 +166,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let article = viewModel?.articles?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewControllerArticleCell", for: indexPath) as? HomeViewControllerArticleCell else { return UITableViewCell(frame: .zero) }
-        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", imageURL: article.img)
+        
+        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", image: article.img, providerImage: article.providerImage, provider: article.provider, providerInfo: article.providerText, displayDate: article.displayDate)
         cell.configure(withViewModel: viewModel)
         cell.openArticle = { [weak self] in
-            guard let url = URL(string: article.link), UIApplication.shared.canOpenURL(url) else {
-                 // TODO: Alert
-                return
-            }
-            
-            let vc = SFSafariViewController(url: url)
-            self?.present(vc, animated: true, completion: nil)
-            let generator = UIImpactFeedbackGenerator(style: .medium)
-            generator.impactOccurred()
+            self?.openURL(article.link)
         }
+        cell.openProvider = { [weak self] in
+            self?.openURL(article.providerLink)
+        }
+        
         return cell
     }
     

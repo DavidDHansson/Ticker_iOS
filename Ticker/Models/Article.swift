@@ -8,9 +8,13 @@
 import UIKit
 
 struct Article: Codable {
+    let title: String?
     let img: String?
     let link: String
+    let displayDate: String
     let provider: String
-    let title: String?
+    let providerText: String
+    let providerLink: String
+    let providerImage: String
     let date: [String: Int]
 }

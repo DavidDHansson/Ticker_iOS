@@ -32,5 +32,8 @@ extension UIColor {
     struct Ticker {
         static let viewBackgroundColor = UIColor(named: "viewBackgroundColor")
         static let textColor = UIColor(named: "textColor")
+        static let subViewBackgroundColor = UIColor(named: "subViewBackgroundColor")
+        static let mainColor = UIColor(named: "mainColor")
+        static let mainColorReversed = UIColor(named: "mainColorReversed")
     }
 }
