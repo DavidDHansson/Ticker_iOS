@@ -33,7 +33,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
     
     private let imgView: UIImageView = {
         let i = UIImageView(frame: .zero)
-        i.contentMode = .scaleAspectFit
+        i.contentMode = .scaleAspectFill
         return i
     }()
     

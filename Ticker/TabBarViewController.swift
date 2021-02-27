@@ -21,12 +21,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func styleTabBar() {
-        
+        tabBar.tintColor = UIColor.Ticker.mainColorReversed
     }
 
     private func setupTabBar() {
-        
-        tabBar.tintColor = UIColor.Ticker.mainColorReversed
         
         let homeNVC = UINavigationController(rootViewController: HomeViewController())
         homeNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)
