@@ -34,6 +34,8 @@ extension UIColor {
         static let textColor = UIColor(named: "textColor")
         static let subViewBackgroundColor = UIColor(named: "subViewBackgroundColor")
         static let mainColor = UIColor(named: "mainColor")
-        static let mainColorReversed = UIColor(named: "mainColorReversed")
+        static let mainColorReversed = UIColor(named: "mainColorReversed")!
+        static let articleBorderColor = UIColor(named: "articleBorderColor")!
+        static let articleDateColor = UIColor(named: "articleDateColor")
     }
 }

@@ -45,6 +45,7 @@
 		EBABAA6625E985B900E78653 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBABAA5925E985B900E78653 /* Roboto-Bold.ttf */; };
 		EBABAA6725E985B900E78653 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBABAA5A25E985B900E78653 /* Roboto-Black.ttf */; };
 		EBABAA6825E985B900E78653 /* SanFranciscoDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBABAA5B25E985B900E78653 /* SanFranciscoDisplay-Semibold.otf */; };
+		EBB48CDB25EBEE2B0042CC6F /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */; };
 		EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */; };
 		EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795925DD3D5100043559 /* SettingsPresenter.swift */; };
 		EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795A25DD3D5100043559 /* SettingsWorker.swift */; };
@@ -98,6 +99,7 @@
 		EBABAA5925E985B900E78653 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		EBABAA5A25E985B900E78653 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EBABAA5B25E985B900E78653 /* SanFranciscoDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
 		EBCF795925DD3D5100043559 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		EBCF795A25DD3D5100043559 /* SettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */,
 				EBD849DB25DDA7FE0055805C /* UIView+Extensions.swift */,
 				EBABAA4B25E984C600E78653 /* UIFont+Extensions.swift */,
+				EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				EB11C9A225C196C0009E128C /* HomePresenter.swift in Sources */,
 				EB11C9A525C196C0009E128C /* HomeModels.swift in Sources */,
 				EBCF796225DD3D5100043559 /* SettingsModels.swift in Sources */,
+				EBB48CDB25EBEE2B0042CC6F /* UIImage+Extensions.swift in Sources */,
 				EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */,
 				EBCF796325DD3D5100043559 /* SettingsViewController.swift in Sources */,
 			);

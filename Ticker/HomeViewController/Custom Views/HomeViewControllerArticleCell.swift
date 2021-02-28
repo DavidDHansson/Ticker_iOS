@@ -31,10 +31,15 @@ class HomeViewControllerArticleCell: UITableViewCell {
         return l
     }()
     
-    private let imgView: UIImageView = {
+    private let articleImageView: UIImageView = {
         let i = UIImageView(frame: .zero)
         i.contentMode = .scaleAspectFill
         return i
+    }()
+    
+    private let articleView: UIView = {
+        let v = UIView(frame: .zero)
+        return v
     }()
     
     private let view: UIView = {
@@ -67,15 +72,21 @@ class HomeViewControllerArticleCell: UITableViewCell {
         return i
     }()
     
-    // TODO: Date label
+    private let dateLabel: UILabel = {
+        let l = UILabel(frame: .zero)
+        l.textColor = UIColor.Ticker.articleDateColor
+        l.font = Font.SanFranciscoDisplay.regular.size(10)
+        return l
+    }()
     
     public var openArticle: (() -> Void)?
     public var openProvider: (() -> Void)?
     
+    private var articleImageViewHeightConstraint: NSLayoutConstraint!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        // Colors
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         
@@ -83,16 +94,18 @@ class HomeViewControllerArticleCell: UITableViewCell {
         view.addSubview(providerImageView)
         view.addSubview(providerButton)
         view.addSubview(providerInfoButton)
-        view.addSubview(imgView)
-        view.addSubview(titleLabel)
+        articleView.addSubview(articleImageView)
+        articleView.addSubview(titleLabel)
+        articleView.addSubview(dateLabel)
+        view.addSubview(articleView)
         contentView.addSubview(view)
         
         // Define Layout
         defineLayout()
         
         // Targets
-        imgView.isUserInteractionEnabled = true
-        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
+        articleView.isUserInteractionEnabled = true
+        articleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
         providerImageView.isUserInteractionEnabled = true
         providerImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(providerTapped)))
         providerButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
@@ -122,52 +135,79 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerInfoButton.leadingAnchor.constraint(equalTo: providerImageView.trailingAnchor, constant: 10).isActive = true
         providerInfoButton.heightAnchor.constraint(equalTo: providerImageView.heightAnchor, multiplier: 0.5).isActive = true
         
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.topAnchor.constraint(equalTo: providerImageView.bottomAnchor, constant: 15).isActive = true
-        imgView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        imgView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
-        imgView.heightAnchor.constraint(equalToConstant: 180).isActive = true
+        articleView.translatesAutoresizingMaskIntoConstraints = false
+        articleView.topAnchor.constraint(equalTo: providerImageView.bottomAnchor, constant: 15).isActive = true
+        articleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        articleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        articleView.heightAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
+        articleView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
+        
+        articleImageView.translatesAutoresizingMaskIntoConstraints = false
+        articleImageView.topAnchor.constraint(equalTo: articleView.topAnchor).isActive = true
+        articleImageView.leadingAnchor.constraint(equalTo: articleView.leadingAnchor).isActive = true
+        articleImageView.trailingAnchor.constraint(equalTo: articleView.trailingAnchor).isActive = true
+        articleImageViewHeightConstraint = articleImageView.heightAnchor.constraint(equalToConstant: 180)
+        articleImageViewHeightConstraint.isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: imgView.bottomAnchor, constant: 15).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: articleImageView.bottomAnchor, constant: 5).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: articleView.leadingAnchor, constant: 5).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: articleView.trailingAnchor, constant: -5).isActive = true
         titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
+        
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 3).isActive = true
+        dateLabel.leadingAnchor.constraint(equalTo: articleView.leadingAnchor, constant: 5).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: articleView.trailingAnchor, constant: -5).isActive = true
+        dateLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
+        dateLabel.bottomAnchor.constraint(equalTo: articleView.bottomAnchor, constant: -5).isActive = true
     }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+
+        let bottomBorder = CALayer()
+        bottomBorder.frame = CGRect(x: 0, y: articleImageView.bounds.height, width: articleView.bounds.width, height: 1)
+        bottomBorder.backgroundColor = UIColor.Ticker.articleBorderColor.cgColor
+        articleImageView.layer.addSublayer(bottomBorder)
         
-        providerImageView.layer.borderWidth = 2
-        providerImageView.layer.borderColor = UIColor.Ticker.textColor?.cgColor
-        providerImageView.layer.cornerRadius = providerImageView.bounds.height / 2
-        providerImageView.layer.masksToBounds = false
-        providerImageView.clipsToBounds = true
+        articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
+        view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
+        providerImageView.roundAllCorners(radius: providerImageView.bounds.height / 2, backgroundColor: UIColor.Ticker.mainColorReversed, width: 2)
         
-        imgView.roundCorners(corners: .allCorners, radius: 8)
-        view.roundCorners(corners: .allCorners, radius: 8)
+        guard let color = articleImageView.image?.averageColor else { return }
+        articleView.backgroundColor = color.withAlphaComponent(0.4)
     }
     
     override func prepareForReuse() {
         titleLabel.text = nil
-        imgView.image = nil
+        articleImageView.image = nil
         providerImageView.image = nil
         providerButton.titleLabel?.text = nil
         providerInfoButton.titleLabel?.text = nil
+        dateLabel.text = nil
+        articleView.backgroundColor = .clear
+        articleImageViewHeightConstraint.constant = 180
     }
     
     public func configure(withViewModel viewModel: ViewModel) {
         titleLabel.text = viewModel.title
+        dateLabel.text = viewModel.displayDate
         
         if let providerURL = URL(string: viewModel.providerImage) {
             providerImageView.af.setImage(withURL: providerURL)
         }
         
         if let urlRaw = viewModel.image, let url = URL(string: urlRaw) {
-            imgView.af.setImage(withURL: url) // TODO: Use with placeholder image
+            articleImageView.af.setImage(withURL: url) // TODO: Use with placeholder image
+            articleImageViewHeightConstraint.constant = 180
+            layoutIfNeeded()
+            
+            guard let color = articleImageView.image?.averageColor else { return }
+            articleView.backgroundColor = color.withAlphaComponent(0.4)
         } else {
-            // TODO: Design for no image
+            articleImageViewHeightConstraint.constant = 0
+            layoutIfNeeded()
         }
         
     }
@@ -183,6 +223,5 @@ class HomeViewControllerArticleCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
 }
