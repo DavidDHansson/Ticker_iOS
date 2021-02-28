@@ -66,10 +66,10 @@ class HomeViewControllerArticleCell: UITableViewCell {
         return b
     }()
     
-    private let providerImageView: UIImageView = {
-        let i = UIImageView(frame: .zero)
-        i.contentMode = .scaleAspectFill
-        return i
+    private let providerLogoButton: UIButton = {
+        let b = UIButton(frame: .zero)
+        b.imageView?.contentMode = .scaleAspectFill
+        return b
     }()
     
     private let dateLabel: UILabel = {
@@ -77,6 +77,13 @@ class HomeViewControllerArticleCell: UITableViewCell {
         l.textColor = UIColor.Ticker.articleDateColor
         l.font = Font.SanFranciscoDisplay.regular.size(10)
         return l
+    }()
+    
+    private let dotMenuButton: UIButton = {
+        let b = UIButton(frame: .zero)
+        b.setImage(UIImage(named: "dotmenu")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        b.imageView?.tintColor = UIColor.Ticker.mainColorReversed
+        return b
     }()
     
     public var openArticle: (() -> Void)?
@@ -91,9 +98,10 @@ class HomeViewControllerArticleCell: UITableViewCell {
         backgroundColor = .clear
         
         // Add subviews
-        view.addSubview(providerImageView)
+        view.addSubview(providerLogoButton)
         view.addSubview(providerButton)
         view.addSubview(providerInfoButton)
+        view.addSubview(dotMenuButton)
         articleView.addSubview(articleImageView)
         articleView.addSubview(titleLabel)
         articleView.addSubview(dateLabel)
@@ -106,8 +114,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         // Targets
         articleView.isUserInteractionEnabled = true
         articleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
-        providerImageView.isUserInteractionEnabled = true
-        providerImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(providerTapped)))
+        providerLogoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerInfoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
     }
@@ -119,24 +126,30 @@ class HomeViewControllerArticleCell: UITableViewCell {
         view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         
-        providerImageView.translatesAutoresizingMaskIntoConstraints = false
-        providerImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        providerImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15).isActive = true
-        providerImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
-        providerImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
+        providerLogoButton.translatesAutoresizingMaskIntoConstraints = false
+        providerLogoButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+        providerLogoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15).isActive = true
+        providerLogoButton.heightAnchor.constraint(equalToConstant: 33).isActive = true
+        providerLogoButton.widthAnchor.constraint(equalToConstant: 33).isActive = true
         
         providerButton.translatesAutoresizingMaskIntoConstraints = false
-        providerButton.topAnchor.constraint(equalTo: providerImageView.topAnchor).isActive = true
-        providerButton.leadingAnchor.constraint(equalTo: providerImageView.trailingAnchor, constant: 10).isActive = true
-        providerButton.heightAnchor.constraint(equalTo: providerImageView.heightAnchor, multiplier: 0.5).isActive = true
+        providerButton.topAnchor.constraint(equalTo: providerLogoButton.topAnchor).isActive = true
+        providerButton.leadingAnchor.constraint(equalTo: providerLogoButton.trailingAnchor, constant: 10).isActive = true
+        providerButton.heightAnchor.constraint(equalTo: providerLogoButton.heightAnchor, multiplier: 0.5).isActive = true
         
         providerInfoButton.translatesAutoresizingMaskIntoConstraints = false
         providerInfoButton.topAnchor.constraint(equalTo: providerButton.bottomAnchor).isActive = true
-        providerInfoButton.leadingAnchor.constraint(equalTo: providerImageView.trailingAnchor, constant: 10).isActive = true
-        providerInfoButton.heightAnchor.constraint(equalTo: providerImageView.heightAnchor, multiplier: 0.5).isActive = true
+        providerInfoButton.leadingAnchor.constraint(equalTo: providerLogoButton.trailingAnchor, constant: 10).isActive = true
+        providerInfoButton.heightAnchor.constraint(equalTo: providerLogoButton.heightAnchor, multiplier: 0.5).isActive = true
+        
+        dotMenuButton.translatesAutoresizingMaskIntoConstraints = false
+        dotMenuButton.centerYAnchor.constraint(equalTo: providerLogoButton.centerYAnchor).isActive = true
+        dotMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+        dotMenuButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        dotMenuButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
         
         articleView.translatesAutoresizingMaskIntoConstraints = false
-        articleView.topAnchor.constraint(equalTo: providerImageView.bottomAnchor, constant: 15).isActive = true
+        articleView.topAnchor.constraint(equalTo: providerLogoButton.bottomAnchor, constant: 15).isActive = true
         articleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
         articleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
         articleView.heightAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
@@ -173,7 +186,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         
         articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
-        providerImageView.roundAllCorners(radius: providerImageView.bounds.height / 2, backgroundColor: UIColor.Ticker.mainColorReversed, width: 2)
+        providerLogoButton.roundAllCorners(radius: providerLogoButton.bounds.height / 2, backgroundColor: UIColor.Ticker.mainColorReversed, width: 2)
         
         guard let color = articleImageView.image?.averageColor else { return }
         articleView.backgroundColor = color.withAlphaComponent(0.4)
@@ -182,7 +195,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
     override func prepareForReuse() {
         titleLabel.text = nil
         articleImageView.image = nil
-        providerImageView.image = nil
+        providerLogoButton.imageView?.image = nil
         providerButton.titleLabel?.text = nil
         providerInfoButton.titleLabel?.text = nil
         dateLabel.text = nil
@@ -195,7 +208,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         dateLabel.text = viewModel.displayDate
         
         if let providerURL = URL(string: viewModel.providerImage) {
-            providerImageView.af.setImage(withURL: providerURL)
+            providerLogoButton.af.setImage(for: .normal, url: providerURL)
         }
         
         if let urlRaw = viewModel.image, let url = URL(string: urlRaw) {

@@ -27,10 +27,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func setupTabBar() {
         
         let homeNVC = UINavigationController(rootViewController: HomeViewController())
-        homeNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)
+        homeNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "tv")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "tv.fill")?.withRenderingMode(.alwaysTemplate))
         
         let settingsNVC = UINavigationController(rootViewController: SettingsViewController())
-        settingsNVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "menu-item-myday")?.withRenderingMode(.alwaysTemplate), selectedImage: nil)
+        settingsNVC.tabBarItem = UITabBarItem(title: "Min Profil", image: UIImage(systemName: "rectangle.badge.person.crop")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "rectangle.badge.person.crop.fill")?.withRenderingMode(.alwaysTemplate))
         
         viewControllers = [
             homeNVC,
