@@ -115,8 +115,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerLogoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerInfoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
-        
-        updateImageBackgroundColor() 
     }
     
     override func draw(_ rect: CGRect) {
@@ -126,14 +124,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
         articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         providerLogoButton.roundAllCorners(radius: providerLogoButton.bounds.height / 2, backgroundColor: UIColor.Ticker.mainColorReversed, width: 2)
-
-        updateImageBackgroundColor()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        updateImageBackgroundColor()
     }
     
     private func defineLayout() {
@@ -218,21 +208,19 @@ class HomeViewControllerArticleCell: UITableViewCell {
         
         if let urlRaw = viewModel.image, let url = URL(string: urlRaw) {
             articleImageView.af.setImage(withURL: url) // TODO: Use with placeholder image
+            
+            articleImageView.af.setImage(withURL: url, completion: { (response) in
+                guard let image = response.value, let color = image.averageColor else { return }
+                self.articleView.backgroundColor = color.withAlphaComponent(0.35)
+            })
+            
             articleImageViewHeightConstraint.constant = 180
             layoutIfNeeded()
-            
-            guard let color = articleImageView.image?.averageColor else { return }
-            articleView.backgroundColor = color.withAlphaComponent(0.4)
         } else {
             articleImageViewHeightConstraint.constant = 0
             layoutIfNeeded()
         }
         
-    }
-    
-    private func updateImageBackgroundColor() {
-        guard let color = articleImageView.image?.averageColor else { return }
-        articleView.backgroundColor = color.withAlphaComponent(0.35)
     }
     
     @objc func providerTapped() {
