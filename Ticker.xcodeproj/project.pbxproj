@@ -22,7 +22,6 @@
 		EB8E783E25C19B2B00883DFD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */; };
 		EB8E784325C19BAE00883DFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */; };
 		EBA337F425DD8A9500D12457 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337F325DD8A9500D12457 /* Article.swift */; };
-		EBA337F925DD8B1900D12457 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337F825DD8B1900D12457 /* Provider.swift */; };
 		EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337FD25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift */; };
 		EBA3380325DD964E00D12457 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */; };
 		EBABAA3925E94F9500E78653 /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBABAA3825E94F9500E78653 /* APIManagerProtocol.swift */; };
@@ -76,7 +75,6 @@
 		EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBA337F325DD8A9500D12457 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		EBA337F825DD8B1900D12457 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		EBA337FD25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerArticleCell.swift; sourceTree = "<group>"; };
 		EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		EBABAA3825E94F9500E78653 /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				EBA337F325DD8A9500D12457 /* Article.swift */,
-				EBA337F825DD8B1900D12457 /* Provider.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -460,7 +457,6 @@
 				EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */,
 				EBCF796425DD3D5100043559 /* SettingsInteractor.swift in Sources */,
 				EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */,
-				EBA337F925DD8B1900D12457 /* Provider.swift in Sources */,
 				EBABAA4C25E984C600E78653 /* UIFont+Extensions.swift in Sources */,
 				EBA3380325DD964E00D12457 /* CALayer+Extensions.swift in Sources */,
 				EBABAA4325E95BA900E78653 /* AppConfiguration.swift in Sources */,

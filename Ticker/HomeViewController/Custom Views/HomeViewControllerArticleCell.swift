@@ -51,7 +51,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
     private let providerButton: UIButton = {
         let b = UIButton(frame: .zero)
         b.titleLabel?.font = Font.SanFranciscoDisplay.medium.size(18)
-        b.setTitle("euroinvester", for: .normal)
         b.setTitleColor(UIColor.Ticker.textColor, for: .normal)
         b.titleLabel?.textAlignment = .left
         return b
@@ -60,7 +59,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
     private let providerInfoButton: UIButton = {
         let b = UIButton(frame: .zero)
         b.titleLabel?.font = Font.SanFranciscoDisplay.regular.size(12)
-        b.setTitle("Seneste Nyheder", for: .normal)
         b.setTitleColor(UIColor.Ticker.textColor, for: .normal)
         b.titleLabel?.textAlignment = .left
         return b
@@ -117,6 +115,25 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerLogoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerInfoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
+        
+        updateImageBackgroundColor() 
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+
+        articleImageView.roundAllCorners(radius: 0, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
+        articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
+        view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
+        providerLogoButton.roundAllCorners(radius: providerLogoButton.bounds.height / 2, backgroundColor: UIColor.Ticker.mainColorReversed, width: 2)
+
+        updateImageBackgroundColor()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        updateImageBackgroundColor()
     }
     
     private func defineLayout() {
@@ -176,36 +193,24 @@ class HomeViewControllerArticleCell: UITableViewCell {
         dateLabel.bottomAnchor.constraint(equalTo: articleView.bottomAnchor, constant: -5).isActive = true
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRect(x: 0, y: articleImageView.bounds.height, width: articleView.bounds.width, height: 1)
-        bottomBorder.backgroundColor = UIColor.Ticker.articleBorderColor.cgColor
-        articleImageView.layer.addSublayer(bottomBorder)
-        
-        articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
-        view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
-        providerLogoButton.roundAllCorners(radius: providerLogoButton.bounds.height / 2, backgroundColor: UIColor.Ticker.mainColorReversed, width: 2)
-        
-        guard let color = articleImageView.image?.averageColor else { return }
-        articleView.backgroundColor = color.withAlphaComponent(0.4)
-    }
-    
     override func prepareForReuse() {
         titleLabel.text = nil
-        articleImageView.image = nil
+        dateLabel.text = nil
+        
         providerLogoButton.imageView?.image = nil
         providerButton.titleLabel?.text = nil
         providerInfoButton.titleLabel?.text = nil
-        dateLabel.text = nil
+        
+        articleImageViewHeightConstraint.constant = 0
         articleView.backgroundColor = .clear
-        articleImageViewHeightConstraint.constant = 180
+        articleImageView.image = nil
     }
     
     public func configure(withViewModel viewModel: ViewModel) {
         titleLabel.text = viewModel.title
         dateLabel.text = viewModel.displayDate
+        providerButton.setTitle(viewModel.provider, for: .normal)
+        providerInfoButton.setTitle(viewModel.providerInfo, for: .normal)
         
         if let providerURL = URL(string: viewModel.providerImage) {
             providerLogoButton.af.setImage(for: .normal, url: providerURL)
@@ -223,6 +228,11 @@ class HomeViewControllerArticleCell: UITableViewCell {
             layoutIfNeeded()
         }
         
+    }
+    
+    private func updateImageBackgroundColor() {
+        guard let color = articleImageView.image?.averageColor else { return }
+        articleView.backgroundColor = color.withAlphaComponent(0.35)
     }
     
     @objc func providerTapped() {

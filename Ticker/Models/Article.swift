@@ -16,5 +16,4 @@ struct Article: Codable {
     let providerText: String
     let providerLink: String
     let providerImage: String
-    let date: [String: Int]
 }

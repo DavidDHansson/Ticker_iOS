@@ -30,7 +30,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         homeNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "tv")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "tv.fill")?.withRenderingMode(.alwaysTemplate))
         
         let settingsNVC = UINavigationController(rootViewController: SettingsViewController())
-        settingsNVC.tabBarItem = UITabBarItem(title: "Min Profil", image: UIImage(systemName: "rectangle.badge.person.crop")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "rectangle.badge.person.crop.fill")?.withRenderingMode(.alwaysTemplate))
+        settingsNVC.tabBarItem = UITabBarItem(title: "Min Profil", image: UIImage(systemName: "person")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysTemplate))
         
         viewControllers = [
             homeNVC,

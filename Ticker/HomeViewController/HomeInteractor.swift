@@ -28,7 +28,7 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
             articles.removeAll()
         }
         
-        let apiRequest = APIRequest(endpoint: "home?page=\(request.page)&per=\(10)", method: .get, parameters: nil)
+        let apiRequest = APIRequest(endpoint: "home?page=\(request.page)&per=\(30)", method: .get, parameters: nil)
         APIManager.shared.callAPI(of: [Article].self, withRequest: apiRequest, completion: { [weak self] (result) in
             switch result {
             case .success(let articles):
