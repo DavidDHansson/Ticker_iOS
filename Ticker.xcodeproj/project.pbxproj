@@ -20,7 +20,11 @@
 		EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11C9A025C196C0009E128C /* HomeViewController.swift */; };
 		EB11C9A725C196C0009E128C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11C9A125C196C0009E128C /* HomeInteractor.swift */; };
 		EB1E176225FFD30B00BEA1FA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E176125FFD30B00BEA1FA /* UIViewController+Extensions.swift */; };
-		EB1E178A25FFD5DF00BEA1FA /* ActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E178925FFD5DF00BEA1FA /* ActionSheetController.swift */; };
+		EB1E178D25FFD68D00BEA1FA /* ActionSheetAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E178C25FFD68D00BEA1FA /* ActionSheetAction.swift */; };
+		EB1E179825FFD8C000BEA1FA /* ActionSheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E179725FFD8C000BEA1FA /* ActionSheetHeader.swift */; };
+		EB1E179C25FFD9D100BEA1FA /* ActionSheetTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E179B25FFD9D100BEA1FA /* ActionSheetTitleHeaderView.swift */; };
+		EB1E17A025FFD9F000BEA1FA /* ActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E179F25FFD9F000BEA1FA /* ActionSheetController.swift */; };
+		EB1E17A325FFE08300BEA1FA /* TMIconTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E17A225FFE08300BEA1FA /* TMIconTitleButton.swift */; };
 		EB8E783E25C19B2B00883DFD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */; };
 		EB8E784325C19BAE00883DFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */; };
 		EBA337F425DD8A9500D12457 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337F325DD8A9500D12457 /* Article.swift */; };
@@ -75,7 +79,11 @@
 		EB11C9A025C196C0009E128C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EB11C9A125C196C0009E128C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		EB1E176125FFD30B00BEA1FA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		EB1E178925FFD5DF00BEA1FA /* ActionSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetController.swift; sourceTree = "<group>"; };
+		EB1E178C25FFD68D00BEA1FA /* ActionSheetAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetAction.swift; sourceTree = "<group>"; };
+		EB1E179725FFD8C000BEA1FA /* ActionSheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetHeader.swift; sourceTree = "<group>"; };
+		EB1E179B25FFD9D100BEA1FA /* ActionSheetTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetTitleHeaderView.swift; sourceTree = "<group>"; };
+		EB1E179F25FFD9F000BEA1FA /* ActionSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionSheetController.swift; path = "Ticker/Custom views/ActionSheet/ActionSheetController.swift"; sourceTree = SOURCE_ROOT; };
+		EB1E17A225FFE08300BEA1FA /* TMIconTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMIconTitleButton.swift; sourceTree = "<group>"; };
 		EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBA337F325DD8A9500D12457 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -187,6 +195,26 @@
 			path = HomeViewController;
 			sourceTree = "<group>";
 		};
+		EB1E178F25FFD84200BEA1FA /* ActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				EB1E17A225FFE08300BEA1FA /* TMIconTitleButton.swift */,
+				EB1E179225FFD86300BEA1FA /* ActionSheetHeaders */,
+				EB1E178C25FFD68D00BEA1FA /* ActionSheetAction.swift */,
+				EB1E179F25FFD9F000BEA1FA /* ActionSheetController.swift */,
+			);
+			path = ActionSheet;
+			sourceTree = "<group>";
+		};
+		EB1E179225FFD86300BEA1FA /* ActionSheetHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				EB1E179725FFD8C000BEA1FA /* ActionSheetHeader.swift */,
+				EB1E179B25FFD9D100BEA1FA /* ActionSheetTitleHeaderView.swift */,
+			);
+			path = ActionSheetHeaders;
+			sourceTree = "<group>";
+		};
 		EB8E784025C19B6600883DFD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +317,7 @@
 		EBCF797C25DD855400043559 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
-				EB1E178925FFD5DF00BEA1FA /* ActionSheetController.swift */,
+				EB1E178F25FFD84200BEA1FA /* ActionSheet */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -455,12 +483,13 @@
 				EB11C9A425C196C0009E128C /* HomeRouter.swift in Sources */,
 				EBA337F425DD8A9500D12457 /* Article.swift in Sources */,
 				EB11C97125C191C6009E128C /* AppDelegate.swift in Sources */,
+				EB1E178D25FFD68D00BEA1FA /* ActionSheetAction.swift in Sources */,
 				EBD849DC25DDA7FE0055805C /* UIView+Extensions.swift in Sources */,
-				EB1E178A25FFD5DF00BEA1FA /* ActionSheetController.swift in Sources */,
 				EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */,
 				EBABAA4925E95CD100E78653 /* FirebaseConfigurator.swift in Sources */,
 				EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */,
 				EBABAA3925E94F9500E78653 /* APIManagerProtocol.swift in Sources */,
+				EB1E179C25FFD9D100BEA1FA /* ActionSheetTitleHeaderView.swift in Sources */,
 				EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */,
 				EBCF796425DD3D5100043559 /* SettingsInteractor.swift in Sources */,
 				EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */,
@@ -473,12 +502,15 @@
 				EB11C9A325C196C0009E128C /* HomeWorker.swift in Sources */,
 				EB1E176225FFD30B00BEA1FA /* UIViewController+Extensions.swift in Sources */,
 				EB11C9A725C196C0009E128C /* HomeInteractor.swift in Sources */,
+				EB1E17A325FFE08300BEA1FA /* TMIconTitleButton.swift in Sources */,
 				EB11C9A225C196C0009E128C /* HomePresenter.swift in Sources */,
 				EB11C9A525C196C0009E128C /* HomeModels.swift in Sources */,
 				EBCF796225DD3D5100043559 /* SettingsModels.swift in Sources */,
 				EBB48CDB25EBEE2B0042CC6F /* UIImage+Extensions.swift in Sources */,
 				EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */,
+				EB1E17A025FFD9F000BEA1FA /* ActionSheetController.swift in Sources */,
 				EBCF796325DD3D5100043559 /* SettingsViewController.swift in Sources */,
+				EB1E179825FFD8C000BEA1FA /* ActionSheetHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
