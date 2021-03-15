@@ -133,7 +133,9 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     @objc private func scrollToTop() {
-        tableView.setContentOffset(.zero, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { [weak self] in
+            self?.tableView.setContentOffset(.zero, animated: true)
+        })
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -143,7 +145,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         guard distanceFromBottom < height else { return }
-        guard page == 0 || (page + 1) * 20 == (viewModel?.articles?.count ?? 0) else { return }
+        guard page == 0 || (page + 1) * 30 == (viewModel?.articles?.count ?? 0) else { return }
         
         page += 1
         interactor?.fetchContent(request: .init(page: page))
@@ -151,14 +153,14 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     func displayArticles(viewModel: Home.Articles.ViewModel) {
         self.viewModel = viewModel
+        tableView.hideSkeleton()
         
         if let errorString = viewModel.errorDescription {
+            // TODO: Create extension for this
             let alert = UIAlertController(title: "Error", message: errorString, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
-            tableView.hideSkeleton()
         } else {
-            tableView.hideSkeleton()
             refreshControl.endRefreshing()
             tableView.reloadData()
         }
@@ -166,7 +168,10 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     private func openURL(_ urlRaw: String?) {
         guard let url = URL(string: urlRaw ?? ""), UIApplication.shared.canOpenURL(url) else {
-            // TODO: Alert
+            // TODO: Create extension for this
+            let alert = UIAlertController(title: "Error opening link", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
            return
         }
         let vc = SFSafariViewController(url: url)
@@ -210,4 +215,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Skelet
         return cell
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }

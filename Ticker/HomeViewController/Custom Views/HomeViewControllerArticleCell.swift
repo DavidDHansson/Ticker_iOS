@@ -197,18 +197,17 @@ class HomeViewControllerArticleCell: UITableViewCell {
     override func prepareForReuse() {
         titleLabel.text = nil
         dateLabel.text = nil
-        
         providerLogoButton.imageView?.image = nil
         providerButton.titleLabel?.text = nil
         providerInfoButton.titleLabel?.text = nil
-        
         articleImageViewHeightConstraint.constant = 180
         articleView.backgroundColor = .clear
         articleImageView.image = nil
+        hideSkeleton()
     }
     
     public func configure(withViewModel viewModel: ViewModel) {
-        titleLabel.text = viewModel.title
+        titleLabel.text = formatHTMLEntities(onText: viewModel.title)
         dateLabel.text = viewModel.displayDate
         providerButton.setTitle(viewModel.provider, for: .normal)
         providerInfoButton.setTitle(viewModel.providerInfo, for: .normal)
@@ -218,8 +217,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
         }
         
         if let urlRaw = viewModel.image, let url = URL(string: urlRaw) {
-            articleImageView.af.setImage(withURL: url) // TODO: Use with placeholder image
-            
             articleImageView.af.setImage(withURL: url, completion: { (response) in
                 guard let image = response.value, let color = image.averageColor else { return }
                 self.articleView.backgroundColor = color.withAlphaComponent(0.35)
@@ -232,6 +229,12 @@ class HomeViewControllerArticleCell: UITableViewCell {
             layoutIfNeeded()
         }
         
+    }
+    
+    private func formatHTMLEntities(onText text: String) -> String {
+        var newText = text
+        newText = newText.replacingOccurrences(of: "&amp;", with: "&")
+        return newText
     }
     
     @objc func providerTapped() {
