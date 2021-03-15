@@ -8,18 +8,26 @@
 import UIKit
 import AlamofireImage
 
+protocol HomeViewControllerArticleCellDelegate: class {
+    func presentActionSheet(_ actionSheet: ActionSheetController)
+    func presentShareSheet(_ act: UIActivityViewController)
+}
+
 class HomeViewControllerArticleCell: UITableViewCell {
-    
+
     struct ViewModel {
         let title: String
         let image: String?
+        let url: String?
         let providerImage: String
         let provider: String
         let providerInfo: String
         let displayDate: String
     }
     
+    public weak var delegate: HomeViewControllerArticleCellDelegate?
     var url: String?
+    var title: String?
     
     private var titleLabel: UILabel = {
         let l = UILabel(frame: .zero)
@@ -122,6 +130,8 @@ class HomeViewControllerArticleCell: UITableViewCell {
         // Targets
         articleView.isUserInteractionEnabled = true
         articleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
+        dotMenuButton.isUserInteractionEnabled = true
+        dotMenuButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openMenu)))
         providerLogoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
         providerInfoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
@@ -212,6 +222,9 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerButton.setTitle(viewModel.provider, for: .normal)
         providerInfoButton.setTitle(viewModel.providerInfo, for: .normal)
         
+        url = viewModel.url
+        title = viewModel.title
+        
         if let providerURL = URL(string: viewModel.providerImage) {
             providerLogoButton.af.setImage(for: .normal, url: providerURL)
         }
@@ -235,6 +248,36 @@ class HomeViewControllerArticleCell: UITableViewCell {
         var newText = text
         newText = newText.replacingOccurrences(of: "&amp;", with: "&")
         return newText
+    }
+    
+    private func openInSafari() {
+        guard let url = URL(string: url ?? "") else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    private func share(withImage: Bool) {
+        guard let url = url, let shareURL = NSURL(string: url) else { return }
+        let shareTitle = "Nyhed fra Ticker Appen: \(title ?? "")\n\n"
+        
+        guard withImage, let shareImage = articleImageView.image else {
+            let act = UIActivityViewController(activityItems: [shareTitle, shareURL], applicationActivities: nil)
+            delegate?.presentShareSheet(act)
+            return
+        }
+        
+        let act = UIActivityViewController(activityItems: ["\n\(shareTitle)", shareURL, shareImage], applicationActivities: nil)
+        delegate?.presentShareSheet(act)
+    }
+    
+    @objc private func openMenu() {
+        let actionSheet = ActionSheetController()
+        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i App"), style: .default, handler: { [weak self] in self?.openInBrowser() })
+        let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), style: .default, handler: { [weak self] in self?.openInSafari()  })
+        let sharePicAction = ActionSheetAction(title: NSAttributedString(string: "Del med billede"), style: .default, handler: { [weak self] in self?.share(withImage: true) })
+        let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), style: .default, handler: { [weak self] in self?.share(withImage: false) })
+        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, sharePicAction, shareAction])
+        
+        delegate?.presentActionSheet(actionSheet)
     }
     
     @objc func providerTapped() {

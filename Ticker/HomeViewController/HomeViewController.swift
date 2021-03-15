@@ -196,7 +196,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Skelet
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let article = viewModel?.articles?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewControllerArticleCell", for: indexPath) as? HomeViewControllerArticleCell else { return UITableViewCell(frame: .zero) }
         
-        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", image: article.img, providerImage: article.providerImage, provider: article.provider, providerInfo: article.providerText, displayDate: article.displayDate)
+        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", image: article.img, url: article.link, providerImage: article.providerImage, provider: article.provider, providerInfo: article.providerText, displayDate: article.displayDate)
+        cell.delegate = self
         cell.configure(withViewModel: viewModel)
         cell.openArticle = { [weak self] in
             self?.openURL(article.link)
@@ -210,5 +211,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Skelet
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension HomeViewController: HomeViewControllerArticleCellDelegate {
+    func presentShareSheet(_ act: UIActivityViewController) {
+        act.popoverPresentationController?.sourceView = view
+        act.popoverPresentationController?.permittedArrowDirections = .any
+        
+        present(act, animated: true, completion: nil)
+    }
+    
+    func presentActionSheet(_ actionSheet: ActionSheetController) {
+        actionSheet.present(on: self)
     }
 }
