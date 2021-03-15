@@ -143,7 +143,9 @@ class HomeViewControllerArticleCell: UITableViewCell {
         articleImageView.roundAllCorners(radius: 0, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
-        providerLogoButton.roundCorners(corners: .allCorners, radius: providerLogoButton.bounds.height / 2)
+        providerLogoButton.layer.cornerRadius = providerLogoButton.bounds.height / 2
+        providerLogoButton.clipsToBounds = true
+        
     }
     
     private func defineLayout() {
