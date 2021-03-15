@@ -52,7 +52,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         let b = UIButton(frame: .zero)
         b.titleLabel?.font = Font.SanFranciscoDisplay.medium.size(18)
         b.setTitleColor(UIColor.Ticker.textColor, for: .normal)
-        b.titleLabel?.textAlignment = .left
+        b.contentHorizontalAlignment = .left
         return b
     }()
     
@@ -109,6 +109,16 @@ class HomeViewControllerArticleCell: UITableViewCell {
         // Define Layout
         defineLayout()
         
+        // Setup Skeleton
+        isSkeletonable = true
+        view.isSkeletonable = true
+        titleLabel.isSkeletonable = true
+        articleImageView.isSkeletonable = true
+        articleView.isSkeletonable = true
+        providerButton.isSkeletonable = true
+        providerLogoButton.isSkeletonable = true
+        dotMenuButton.isSkeletonable = true
+        
         // Targets
         articleView.isUserInteractionEnabled = true
         articleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
@@ -123,7 +133,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         articleImageView.roundAllCorners(radius: 0, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
-        providerLogoButton.roundAllCorners(radius: providerLogoButton.bounds.height / 2, backgroundColor: UIColor.Ticker.mainColorReversed, width: 2)
+        providerLogoButton.roundCorners(corners: .allCorners, radius: providerLogoButton.bounds.height / 2)
     }
     
     private func defineLayout() {
@@ -142,6 +152,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerButton.translatesAutoresizingMaskIntoConstraints = false
         providerButton.topAnchor.constraint(equalTo: providerLogoButton.topAnchor).isActive = true
         providerButton.leadingAnchor.constraint(equalTo: providerLogoButton.trailingAnchor, constant: 10).isActive = true
+        providerButton.trailingAnchor.constraint(equalTo: dotMenuButton.leadingAnchor, constant: -10).isActive = true
         providerButton.heightAnchor.constraint(equalTo: providerLogoButton.heightAnchor, multiplier: 0.5).isActive = true
         
         providerInfoButton.translatesAutoresizingMaskIntoConstraints = false
@@ -191,7 +202,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerButton.titleLabel?.text = nil
         providerInfoButton.titleLabel?.text = nil
         
-        articleImageViewHeightConstraint.constant = 0
+        articleImageViewHeightConstraint.constant = 180
         articleView.backgroundColor = .clear
         articleImageView.image = nil
     }

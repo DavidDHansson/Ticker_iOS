@@ -27,7 +27,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func setupTabBar() {
         
         let homeNVC = UINavigationController(rootViewController: HomeViewController())
-        homeNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "tv")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "tv.fill")?.withRenderingMode(.alwaysTemplate))
+        homeNVC.tabBarItem = UITabBarItem(title: "Hjem", image: UIImage(systemName: "tv")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "tv.fill")?.withRenderingMode(.alwaysTemplate))
         
         let settingsNVC = UINavigationController(rootViewController: SettingsViewController())
         settingsNVC.tabBarItem = UITabBarItem(title: "Min Profil", image: UIImage(systemName: "person")?.withRenderingMode(.alwaysTemplate), selectedImage: UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysTemplate))
@@ -38,6 +38,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         ]
         
         selectedIndex = 0
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard item.title == "Hjem", selectedIndex == 0 else { return }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scroll_to_top"), object: nil, userInfo: nil)
     }
     
 }

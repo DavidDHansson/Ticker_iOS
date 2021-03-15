@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import SkeletonView
 
 protocol HomeDisplayLogic: class {
     func displayArticles(viewModel: Home.Articles.ViewModel)
@@ -90,12 +91,23 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Skeleton
+        tableView.isSkeletonable = true
+        tableView.showSkeleton()
+        tableView.showAnimatedGradientSkeleton()
+        
         // Refresh control
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshArticles), for: .valueChanged)
         
         // Fetch first page of articles
         interactor?.fetchContent(request: .init(page: 0))
+        
+        // Notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(scrollToTop),
+                                               name: NSNotification.Name(rawValue: "scroll_to_top"),
+                                               object: nil)
+        
     }
     
     private func defineLayout() {
@@ -120,6 +132,10 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         interactor?.fetchContent(request: .init(page: 0))
     }
     
+    @objc private func scrollToTop() {
+        tableView.setContentOffset(.zero, animated: true)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         // Pagination
@@ -140,7 +156,9 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
             let alert = UIAlertController(title: "Error", message: errorString, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
+            tableView.hideSkeleton()
         } else {
+            tableView.hideSkeleton()
             refreshControl.endRefreshing()
             tableView.reloadData()
         }
@@ -159,7 +177,20 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource, SkeletonTableViewDataSource {
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "HomeViewControllerArticleCell"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.articles?.count ?? 0
     }
