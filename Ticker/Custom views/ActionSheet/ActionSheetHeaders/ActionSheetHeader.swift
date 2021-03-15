@@ -13,8 +13,10 @@ protocol ActionSheetHeader {
 
 struct ActionSheetHeaderViewModel {
     let title: NSAttributedString?
+    let detail: NSAttributedString?
 }
 
 enum ActionSheetHeaderType {
     case title(title: NSAttributedString)
+    case titleDetail(title: NSAttributedString, detail: NSAttributedString)
 }

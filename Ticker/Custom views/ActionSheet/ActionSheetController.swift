@@ -15,7 +15,6 @@ class ActionSheetController: UIViewController {
         s.axis = .vertical
         s.spacing = 12.0
         s.clipsToBounds = true
-        s.distribution = .fill
         return s
     }()
     
@@ -67,8 +66,13 @@ class ActionSheetController: UIViewController {
             switch type {
             case .title(let title):
                 headerView = ActionSheetTitleHeaderView(frame: .zero)
-                headerViewModel = ActionSheetHeaderViewModel(title: title)
+                headerViewModel = ActionSheetHeaderViewModel(title: title, detail: nil)
+            case .titleDetail(let title, let detail):
+                headerView = ActionSheetTitleDetailHeaderView(frame: .zero)
+                headerViewModel = ActionSheetHeaderViewModel(title: title, detail: detail)
             default:
+                guard let actions = actions else { return }
+                self.add(actions: actions)
                 return
             }
          
@@ -76,13 +80,13 @@ class ActionSheetController: UIViewController {
             
             self.stackView.addArrangedSubview(headerView)
             headerView.translatesAutoresizingMaskIntoConstraints = false
-            headerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+            headerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
             headerView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor).isActive = true
             headerView.setContentHuggingPriority(.required, for: .vertical)
             headerView.setContentCompressionResistancePriority(.required, for: .vertical)
             
-            
-            
+            guard let actions = actions else { return }
+            self.add(actions: actions)
         }
     }
     
@@ -98,7 +102,7 @@ class ActionSheetController: UIViewController {
             b.inActiveTitleColor = UIColor.Ticker.textColor
             b.imageView?.tintColor = UIColor.Ticker.mainColor
             b.titleLabel?.font = Font.SanFranciscoDisplay.regular.size(17)
-            b.backgroundColor = .red
+            b.backgroundColor = UIColor.Ticker.buttonColor
             b.layer.cornerRadius = 7.0
             b.clipsToBounds = true
             b.contentHorizontalAlignment = .left
@@ -114,8 +118,6 @@ class ActionSheetController: UIViewController {
             $0.setContentHuggingPriority(.required, for: .vertical)
             $0.setContentCompressionResistancePriority(.required, for: .vertical)
         }
-        
-        self.addSpacingToStackView(withSpacing: 30)
     }
     
     public func add(contentView: UIView, withMinimumHeight: CGFloat = 30) {

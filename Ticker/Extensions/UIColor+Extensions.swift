@@ -37,5 +37,6 @@ extension UIColor {
         static let mainColorReversed = UIColor(named: "mainColorReversed")!
         static let articleBorderColor = UIColor(named: "articleBorderColor")!
         static let articleDateColor = UIColor(named: "articleDateColor")
+        static let buttonColor = UIColor(named: "buttonColor")!
     }
 }

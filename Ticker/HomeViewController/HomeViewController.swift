@@ -107,11 +107,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         NotificationCenter.default.addObserver(self, selector: #selector(scrollToTop),
                                                name: NSNotification.Name(rawValue: "scroll_to_top"),
                                                object: nil)
-        
-        
-        let actionSheet = ActionSheetController()
-        actionSheet.configure(withHeaderType: .title(title: NSAttributedString(string: "TESTING")), actions: nil)
-        actionSheet.present(on: self)
     }
     
     private func defineLayout() {
