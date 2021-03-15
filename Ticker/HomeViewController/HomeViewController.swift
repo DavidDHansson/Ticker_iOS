@@ -156,10 +156,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         tableView.hideSkeleton()
         
         if let errorString = viewModel.errorDescription {
-            // TODO: Create extension for this
-            let alert = UIAlertController(title: "Error", message: errorString, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            presentSimpleAlert(withTitle: "Error", withMessage: errorString, completion: nil)
         } else {
             refreshControl.endRefreshing()
             tableView.reloadData()
@@ -168,11 +165,8 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     private func openURL(_ urlRaw: String?) {
         guard let url = URL(string: urlRaw ?? ""), UIApplication.shared.canOpenURL(url) else {
-            // TODO: Create extension for this
-            let alert = UIAlertController(title: "Error opening link", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-           return
+            presentSimpleAlert(withTitle: "Error opening link", withMessage: nil, completion: nil)
+            return
         }
         let vc = SFSafariViewController(url: url)
         present(vc, animated: true, completion: nil)
