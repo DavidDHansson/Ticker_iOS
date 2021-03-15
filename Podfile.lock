@@ -73,6 +73,7 @@ PODS:
     - nanopb/encode (= 2.30907.0)
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
+  - PanModal (1.2.7)
   - PromisesObjC (1.2.12)
   - SkeletonView (1.13.0)
 
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 4.1)
   - Firebase/Analytics
   - Firebase/Crashlytics
+  - PanModal
   - SkeletonView
 
 SPEC REPOS:
@@ -97,6 +99,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - nanopb
+    - PanModal
     - PromisesObjC
     - SkeletonView
 
@@ -113,9 +116,10 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SkeletonView: 2b14cb767a7da384d17d5d7e1db0d55a6cf9566a
 
-PODFILE CHECKSUM: af20a52b47f440b4951bf70f7b1f9e5d121268fa
+PODFILE CHECKSUM: 48d2ccdbc55a2c618bd9bf96319b51bdceebe7d9
 
 COCOAPODS: 1.10.0

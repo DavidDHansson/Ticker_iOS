@@ -19,6 +19,8 @@
 		EB11C9A525C196C0009E128C /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11C99F25C196C0009E128C /* HomeModels.swift */; };
 		EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11C9A025C196C0009E128C /* HomeViewController.swift */; };
 		EB11C9A725C196C0009E128C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11C9A125C196C0009E128C /* HomeInteractor.swift */; };
+		EB1E176225FFD30B00BEA1FA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E176125FFD30B00BEA1FA /* UIViewController+Extensions.swift */; };
+		EB1E178A25FFD5DF00BEA1FA /* ActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1E178925FFD5DF00BEA1FA /* ActionSheetController.swift */; };
 		EB8E783E25C19B2B00883DFD /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */; };
 		EB8E784325C19BAE00883DFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */; };
 		EBA337F425DD8A9500D12457 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA337F325DD8A9500D12457 /* Article.swift */; };
@@ -72,6 +74,8 @@
 		EB11C99F25C196C0009E128C /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		EB11C9A025C196C0009E128C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EB11C9A125C196C0009E128C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		EB1E176125FFD30B00BEA1FA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		EB1E178925FFD5DF00BEA1FA /* ActionSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetController.swift; sourceTree = "<group>"; };
 		EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		EB8E784225C19BAE00883DFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBA337F325DD8A9500D12457 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				EBD849DB25DDA7FE0055805C /* UIView+Extensions.swift */,
 				EBABAA4B25E984C600E78653 /* UIFont+Extensions.swift */,
 				EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */,
+				EB1E176125FFD30B00BEA1FA /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 		EBCF797C25DD855400043559 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				EB1E178925FFD5DF00BEA1FA /* ActionSheetController.swift */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				EBA337F425DD8A9500D12457 /* Article.swift in Sources */,
 				EB11C97125C191C6009E128C /* AppDelegate.swift in Sources */,
 				EBD849DC25DDA7FE0055805C /* UIView+Extensions.swift in Sources */,
+				EB1E178A25FFD5DF00BEA1FA /* ActionSheetController.swift in Sources */,
 				EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */,
 				EBABAA4925E95CD100E78653 /* FirebaseConfigurator.swift in Sources */,
 				EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */,
@@ -464,6 +471,7 @@
 				EB11C97325C191C6009E128C /* SceneDelegate.swift in Sources */,
 				EBABAA4625E95C4500E78653 /* APIManagerConfigurator.swift in Sources */,
 				EB11C9A325C196C0009E128C /* HomeWorker.swift in Sources */,
+				EB1E176225FFD30B00BEA1FA /* UIViewController+Extensions.swift in Sources */,
 				EB11C9A725C196C0009E128C /* HomeInteractor.swift in Sources */,
 				EB11C9A225C196C0009E128C /* HomePresenter.swift in Sources */,
 				EB11C9A525C196C0009E128C /* HomeModels.swift in Sources */,
