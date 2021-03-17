@@ -204,13 +204,13 @@ extension HomeViewController: UIContextMenuInteractionDelegate {
         guard let article = viewModel?.articles?[indexPath.row] else { return nil }
         
         let menuConfiguration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: {_ in
-            let openInAppAction = UIAction(title: "Åben i App", image: nil, handler: { [weak self] _ in
+            let openInAppAction = UIAction(title: "Åben i App", image: UIImage(systemName: "app"), handler: { [weak self] _ in
                 self?.openURL(article.link)
             })
-            let openInSafariAction = UIAction(title: "Åben i Safari", handler: { [weak self] _ in
+            let openInSafariAction = UIAction(title: "Åben i Safari", image: UIImage(systemName: "safari"), handler: { [weak self] _ in
                 self?.openURLInSafari(article.link)
             })
-            let shareAction = UIAction(title: "Del", handler: { [weak self] _ in
+            let shareAction = UIAction(title: "Del", image: UIImage(systemName: "square.and.arrow.up"), handler: { [weak self] _ in
                 self?.share(withURL: article.link, withTitle: article.title)
             })
             return UIMenu(title: "", children: [openInAppAction, openInSafariAction, shareAction])

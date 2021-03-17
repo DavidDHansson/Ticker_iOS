@@ -100,7 +100,9 @@ class ActionSheetController: UIViewController {
             let b = TMIconTitleButton(withSpacing: 10.0)
             b.setAttributedTitle(action.title, for: .normal)
             b.inActiveTitleColor = UIColor.Ticker.textColor
-            b.titleLabel?.font = Font.SanFranciscoDisplay.regular.size(17)
+            b.setImage(action.image?.withRenderingMode(.alwaysTemplate), for: .normal)
+            b.imageView?.tintColor = UIColor.Ticker.mainColor
+            b.titleLabel?.font = Font.SanFranciscoDisplay.regular.size(19)
             b.backgroundColor = UIColor.Ticker.buttonColor
             b.layer.cornerRadius = 7.0
             b.clipsToBounds = true

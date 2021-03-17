@@ -9,6 +9,7 @@ import UIKit
 
 struct ActionSheetAction {
     let title: NSAttributedString?
+    let image: UIImage?
     let style: UIAlertAction.Style
     let handler: (() -> Void)?
 }

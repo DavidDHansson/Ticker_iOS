@@ -262,13 +262,13 @@ class HomeViewControllerArticleCell: UITableViewCell {
     
     @objc private func openMenu() {
         let actionSheet = ActionSheetController()
-        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i App"), style: .default, handler: { [weak self] in
+        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i App"), image: UIImage(systemName: "app"), style: .default, handler: { [weak self] in
             self?.delegate?.openURL(self?.url)
         })
-        let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), style: .default, handler: { [weak self] in
+        let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), image: UIImage(systemName: "safari"), style: .default, handler: { [weak self] in
             self?.delegate?.openURLInSafari(self?.url)
         })
-        let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), style: .default, handler: { [weak self] in
+        let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), image: UIImage(systemName: "square.and.arrow.up"), style: .default, handler: { [weak self] in
             self?.delegate?.share(withURL: self?.url, withTitle: self?.title)
         })
         actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, shareAction])
