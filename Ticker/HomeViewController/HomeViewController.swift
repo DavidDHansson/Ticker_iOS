@@ -161,18 +161,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
             tableView.reloadData()
         }
     }
-    
-    private func openURL(_ urlRaw: String?) {
-        guard let url = URL(string: urlRaw ?? ""), UIApplication.shared.canOpenURL(url) else {
-            presentSimpleAlert(withTitle: "Error opening link", withMessage: nil, completion: nil)
-            return
-        }
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true, completion: nil)
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
-    }
-    
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource, SkeletonTableViewDataSource {
@@ -196,16 +184,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Skelet
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let article = viewModel?.articles?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewControllerArticleCell", for: indexPath) as? HomeViewControllerArticleCell else { return UITableViewCell(frame: .zero) }
         
-        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", image: article.img, url: article.link, providerImage: article.providerImage, provider: article.provider, providerInfo: article.providerText, displayDate: article.displayDate)
+        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", image: article.img, url: article.link, providerImage: article.providerImage, provider: article.provider, providerInfo: article.providerText, providerURL: article.providerLink, displayDate: article.displayDate)
         cell.delegate = self
         cell.configure(withViewModel: viewModel)
-        cell.openArticle = { [weak self] in
-            self?.openURL(article.link)
-        }
-        cell.openProvider = { [weak self] in
-            self?.openURL(article.providerLink)
-        }
-        
         return cell
     }
     
@@ -214,15 +195,61 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Skelet
     }
 }
 
+extension HomeViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let article = viewModel?.articles?[indexPath.row] else { return nil }
+        
+        let menuConfiguration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: {_ in
+            let openInAppAction = UIAction(title: "Åben i App", image: nil, handler: { [weak self] _ in
+                self?.openURL(article.link)
+            })
+            let openInSafariAction = UIAction(title: "Åben i Safari", handler: { [weak self] _ in
+                self?.openURLInSafari(article.link)
+            })
+            let shareAction = UIAction(title: "Del", handler: { [weak self] _ in
+                self?.share(withURL: article.link, withTitle: article.title)
+            })
+            return UIMenu(title: "", children: [openInAppAction, openInSafariAction, shareAction])
+        })
+        
+        return menuConfiguration
+    }
+}
+
 extension HomeViewController: HomeViewControllerArticleCellDelegate {
-    func presentShareSheet(_ act: UIActivityViewController) {
+    func openURLInSafari(_ rawURL: String?) {
+        guard let url = URL(string: rawURL ?? "") else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    func share(withURL rawURL: String?, withTitle title: String?) {
+        guard let url = rawURL, let shareURL = NSURL(string: url) else { return }
+        let shareTitle = "Nyhed fra Ticker Appen: \(title ?? "")\n\n"
+        var act: UIActivityViewController!
+        
+        act = UIActivityViewController(activityItems: [shareTitle, shareURL], applicationActivities: nil)
         act.popoverPresentationController?.sourceView = view
         act.popoverPresentationController?.permittedArrowDirections = .any
-        
         present(act, animated: true, completion: nil)
     }
     
-    func presentActionSheet(_ actionSheet: ActionSheetController) {
-        actionSheet.present(on: self)
+    func presentMenuSheet(withSheet sheet: ActionSheetController) {
+        sheet.present(on: self)
     }
+    
+    func openURL(_ urlRaw: String?) {
+        guard let url = URL(string: urlRaw ?? ""), UIApplication.shared.canOpenURL(url) else {
+            presentSimpleAlert(withTitle: "Error opening link", withMessage: nil, completion: nil)
+            return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true, completion: nil)
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+    }
+    
 }

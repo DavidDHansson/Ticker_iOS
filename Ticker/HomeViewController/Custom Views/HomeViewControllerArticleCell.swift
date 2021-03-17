@@ -9,8 +9,11 @@ import UIKit
 import AlamofireImage
 
 protocol HomeViewControllerArticleCellDelegate: class {
-    func presentActionSheet(_ actionSheet: ActionSheetController)
-    func presentShareSheet(_ act: UIActivityViewController)
+    
+    func openURL(_ rawURL: String?)
+    func openURLInSafari(_ rawURL: String?)
+    func share(withURL rawURL: String?, withTitle title: String?)
+    func presentMenuSheet(withSheet sheet: ActionSheetController)
 }
 
 class HomeViewControllerArticleCell: UITableViewCell {
@@ -22,12 +25,14 @@ class HomeViewControllerArticleCell: UITableViewCell {
         let providerImage: String
         let provider: String
         let providerInfo: String
+        let providerURL: String
         let displayDate: String
     }
     
     public weak var delegate: HomeViewControllerArticleCellDelegate?
     var url: String?
     var title: String?
+    var providerURL: String?
     
     private var titleLabel: UILabel = {
         let l = UILabel(frame: .zero)
@@ -138,6 +143,18 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerInfoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
     }
     
+    override func prepareForReuse() {
+        titleLabel.text = nil
+        dateLabel.text = nil
+        providerLogoButton.imageView?.image = nil
+        providerButton.titleLabel?.text = nil
+        providerInfoButton.titleLabel?.text = nil
+        articleImageViewHeightConstraint.constant = 180
+        articleView.backgroundColor = .clear
+        articleImageView.image = nil
+        hideSkeleton()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         providerLogoButton.layer.cornerRadius = providerLogoButton.bounds.height / 2
@@ -209,18 +226,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
         dateLabel.bottomAnchor.constraint(equalTo: articleView.bottomAnchor, constant: -5).isActive = true
     }
     
-    override func prepareForReuse() {
-        titleLabel.text = nil
-        dateLabel.text = nil
-        providerLogoButton.imageView?.image = nil
-        providerButton.titleLabel?.text = nil
-        providerInfoButton.titleLabel?.text = nil
-        articleImageViewHeightConstraint.constant = 180
-        articleView.backgroundColor = .clear
-        articleImageView.image = nil
-        hideSkeleton()
-    }
-    
     public func configure(withViewModel viewModel: ViewModel) {
         titleLabel.text = formatHTMLEntities(onText: viewModel.title)
         dateLabel.text = viewModel.displayDate
@@ -229,6 +234,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         
         url = viewModel.url
         title = viewModel.title
+        providerURL = viewModel.providerURL
         
         if let providerURL = URL(string: viewModel.providerImage) {
             providerLogoButton.af.setImage(for: .normal, url: providerURL)
@@ -239,7 +245,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
                 guard let image = response.value, let color = image.averageColor else { return }
                 self.articleView.backgroundColor = color.withAlphaComponent(0.35)
             })
-            
             articleImageViewHeightConstraint.constant = 180
             layoutIfNeeded()
         } else {
@@ -255,42 +260,28 @@ class HomeViewControllerArticleCell: UITableViewCell {
         return newText
     }
     
-    private func openInSafari() {
-        guard let url = URL(string: url ?? "") else { return }
-        UIApplication.shared.open(url)
-    }
-    
-    private func share(withImage: Bool) {
-        guard let url = url, let shareURL = NSURL(string: url) else { return }
-        let shareTitle = "Nyhed fra Ticker Appen: \(title ?? "")\n\n"
-        
-        guard withImage, let shareImage = articleImageView.image else {
-            let act = UIActivityViewController(activityItems: [shareTitle, shareURL], applicationActivities: nil)
-            delegate?.presentShareSheet(act)
-            return
-        }
-        
-        let act = UIActivityViewController(activityItems: ["\n\(shareTitle)", shareURL, shareImage], applicationActivities: nil)
-        delegate?.presentShareSheet(act)
-    }
-    
     @objc private func openMenu() {
         let actionSheet = ActionSheetController()
-        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i App"), style: .default, handler: { [weak self] in self?.openInBrowser() })
-        let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), style: .default, handler: { [weak self] in self?.openInSafari()  })
-        let sharePicAction = ActionSheetAction(title: NSAttributedString(string: "Del med billede"), style: .default, handler: { [weak self] in self?.share(withImage: true) })
-        let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), style: .default, handler: { [weak self] in self?.share(withImage: false) })
-        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, sharePicAction, shareAction])
+        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i App"), style: .default, handler: { [weak self] in
+            self?.delegate?.openURL(self?.url)
+        })
+        let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), style: .default, handler: { [weak self] in
+            self?.delegate?.openURLInSafari(self?.url)
+        })
+        let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), style: .default, handler: { [weak self] in
+            self?.delegate?.share(withURL: self?.url, withTitle: self?.title)
+        })
+        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, shareAction])
         
-        delegate?.presentActionSheet(actionSheet)
+        delegate?.presentMenuSheet(withSheet: actionSheet)
     }
     
     @objc func providerTapped() {
-        openProvider?()
+        delegate?.openURL(providerURL)
     }
     
     @objc func openInBrowser() {
-        openArticle?()
+        delegate?.openURL(url)
     }
     
     required init?(coder: NSCoder) {
