@@ -105,7 +105,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         
         // Notifications
         NotificationCenter.default.addObserver(self, selector: #selector(scrollToTop),
-                                               name: NSNotification.Name(rawValue: "scroll_to_top"),
+                                               name: NSNotification.Name(rawValue: "scrollToTop"),
                                                object: nil)
     }
     
@@ -132,7 +132,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     @objc private func scrollToTop() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: { [weak self] in
             self?.tableView.setContentOffset(.zero, animated: true)
         })
     }

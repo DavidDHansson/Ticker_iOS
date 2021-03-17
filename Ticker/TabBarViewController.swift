@@ -41,8 +41,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        guard item.title == "Hjem", selectedIndex == 0 else { return }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scroll_to_top"), object: nil, userInfo: nil)
+        
+        guard item.title == "Forside", selectedIndex == 0 else { return }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scrollToTop"), object: nil, userInfo: nil)
     }
     
 }
