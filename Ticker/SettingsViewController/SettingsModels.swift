@@ -11,6 +11,17 @@ import UIKit
 enum Settings {
     // MARK: Use cases
     
+    struct Setting {
+        let title: String
+        let type: SettingType
+    }
+    
+    enum SettingType: Equatable {
+        case openInSafari
+        case share
+        case provider(String)
+    }
+    
     enum Something {
         struct Request {
         }

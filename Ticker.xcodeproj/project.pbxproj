@@ -53,6 +53,8 @@
 		EBABAA6725E985B900E78653 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBABAA5A25E985B900E78653 /* Roboto-Black.ttf */; };
 		EBABAA6825E985B900E78653 /* SanFranciscoDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBABAA5B25E985B900E78653 /* SanFranciscoDisplay-Semibold.otf */; };
 		EBB48CDB25EBEE2B0042CC6F /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */; };
+		EBCCFA7F260273BC008572E3 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */; };
+		EBCCFA82260275AA008572E3 /* SettingsTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */; };
 		EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */; };
 		EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795925DD3D5100043559 /* SettingsPresenter.swift */; };
 		EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795A25DD3D5100043559 /* SettingsWorker.swift */; };
@@ -114,6 +116,8 @@
 		EBABAA5A25E985B900E78653 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EBABAA5B25E985B900E78653 /* SanFranciscoDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewHeader.swift; sourceTree = "<group>"; };
 		EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
 		EBCF795925DD3D5100043559 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		EBCF795A25DD3D5100043559 /* SettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
@@ -307,6 +311,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		EBCCFA7C26027308008572E3 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */,
+				EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		EBCF796625DD3D5900043559 /* SettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +329,7 @@
 				EBCF795C25DD3D5100043559 /* SettingsModels.swift */,
 				EBCF795D25DD3D5100043559 /* SettingsViewController.swift */,
 				EBCF795E25DD3D5100043559 /* SettingsInteractor.swift */,
+				EBCCFA7C26027308008572E3 /* Custom Views */,
 			);
 			path = SettingsViewController;
 			sourceTree = "<group>";
@@ -506,6 +520,7 @@
 				EBABAA3F25E9508200E78653 /* AlamofireDriver.swift in Sources */,
 				EB11C97325C191C6009E128C /* SceneDelegate.swift in Sources */,
 				EBABAA4625E95C4500E78653 /* APIManagerConfigurator.swift in Sources */,
+				EBCCFA7F260273BC008572E3 /* SettingsTableViewCell.swift in Sources */,
 				EB1C451F25FFE1FB005E86E0 /* ActionSheetController.swift in Sources */,
 				EB11C9A325C196C0009E128C /* HomeWorker.swift in Sources */,
 				EB1C452625FFE5C0005E86E0 /* ActionSheetTitleDetailHeaderView.swift in Sources */,
@@ -517,6 +532,7 @@
 				EBCF796225DD3D5100043559 /* SettingsModels.swift in Sources */,
 				EBB48CDB25EBEE2B0042CC6F /* UIImage+Extensions.swift in Sources */,
 				EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */,
+				EBCCFA82260275AA008572E3 /* SettingsTableViewHeader.swift in Sources */,
 				EBCF796325DD3D5100043559 /* SettingsViewController.swift in Sources */,
 				EB1E179825FFD8C000BEA1FA /* ActionSheetHeader.swift in Sources */,
 			);

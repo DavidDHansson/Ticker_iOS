@@ -75,6 +75,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
     private let providerLogoButton: UIButton = {
         let b = UIButton(frame: .zero)
         b.imageView?.contentMode = .scaleAspectFill
+        b.clipsToBounds = true
         return b
     }()
     
@@ -88,7 +89,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
     private let dotMenuButton: UIButton = {
         let b = UIButton(frame: .zero)
         b.setImage(UIImage(named: "dotmenu")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        b.imageView?.tintColor = UIColor.Ticker.mainColorReversed
+        b.imageView?.tintColor = UIColor.Ticker.mainColor
         return b
     }()
     
@@ -104,15 +105,15 @@ class HomeViewControllerArticleCell: UITableViewCell {
         backgroundColor = .clear
         
         // Add subviews
+        contentView.addSubview(view)
         view.addSubview(providerLogoButton)
         view.addSubview(providerButton)
         view.addSubview(providerInfoButton)
         view.addSubview(dotMenuButton)
+        view.addSubview(articleView)
         articleView.addSubview(articleImageView)
         articleView.addSubview(titleLabel)
         articleView.addSubview(dateLabel)
-        view.addSubview(articleView)
-        contentView.addSubview(view)
         
         // Define Layout
         defineLayout()
@@ -137,15 +138,17 @@ class HomeViewControllerArticleCell: UITableViewCell {
         providerInfoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        providerLogoButton.layer.cornerRadius = providerLogoButton.bounds.height / 2
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        articleImageView.roundAllCorners(radius: 0, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         articleView.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         view.roundAllCorners(radius: 8, backgroundColor: UIColor.Ticker.articleBorderColor, width: 1)
         providerLogoButton.layer.cornerRadius = providerLogoButton.bounds.height / 2
-        providerLogoButton.clipsToBounds = true
-        
     }
     
     private func defineLayout() {
@@ -193,7 +196,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         articleImageViewHeightConstraint.isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: articleImageView.bottomAnchor, constant: 5).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: articleImageView.bottomAnchor, constant: 8).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: articleView.leadingAnchor, constant: 5).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: articleView.trailingAnchor, constant: -5).isActive = true
         titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
