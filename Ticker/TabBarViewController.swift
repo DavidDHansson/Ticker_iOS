@@ -21,7 +21,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func styleTabBar() {
-        tabBar.tintColor = UIColor.Ticker.mainColorReversed
+        tabBar.tintColor = UIColor.Ticker.mainColor
     }
 
     private func setupTabBar() {
