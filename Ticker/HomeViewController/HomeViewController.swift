@@ -88,8 +88,8 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         addViewHeaderBar()
         
         // Skeleton
+        SkeletonAppearance.default.multilineHeight = 10
         tableView.isSkeletonable = true
-        tableView.showSkeleton()
         tableView.showAnimatedGradientSkeleton()
         
         // Refresh control
@@ -103,6 +103,11 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         NotificationCenter.default.addObserver(self, selector: #selector(scrollToTop),
                                                name: NSNotification.Name(rawValue: "scrollToTop"),
                                                object: nil)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.layoutSkeletonIfNeeded()
     }
     
     private func defineLayout() {

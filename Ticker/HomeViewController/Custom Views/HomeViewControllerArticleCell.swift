@@ -128,12 +128,15 @@ class HomeViewControllerArticleCell: UITableViewCell {
         isSkeletonable = true
         view.isSkeletonable = true
         titleLabel.isSkeletonable = true
+        dateLabel.isSkeletonable = true
         articleImageView.isSkeletonable = true
         articleView.isSkeletonable = true
         providerButton.isSkeletonable = true
         providerLogoButton.isSkeletonable = true
         dotMenuButton.isSkeletonable = true
-        
+        titleLabel.linesCornerRadius = 5
+        dateLabel.linesCornerRadius = 5
+
         // Targets
         articleView.isUserInteractionEnabled = true
         articleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
