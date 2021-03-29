@@ -32,12 +32,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         return t
     }()
     
-    private let statusBarView: UIView = {
-        let v = UIView(frame: .zero)
-        v.backgroundColor = UIColor.Ticker.subViewBackgroundColor
-        return v
-    }()
-    
     private var viewModel: Home.Articles.ViewModel?
     private var page: Int = 0
     
@@ -82,7 +76,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         
         // Add Subviews
         view.addSubview(tableView)
-        view.addSubview(statusBarView)
         
         // Define Layout
         defineLayout()
@@ -90,6 +83,9 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         // Set delegates
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Add header view
+        addViewHeaderBar()
         
         // Skeleton
         tableView.isSkeletonable = true
@@ -110,15 +106,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     private func defineLayout() {
-        let key = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-        let height = key?.windowScene?.statusBarManager?.statusBarFrame.height
-
-        statusBarView.translatesAutoresizingMaskIntoConstraints = false
-        statusBarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        statusBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        statusBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        statusBarView.heightAnchor.constraint(equalToConstant: height ?? 0).isActive = true
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

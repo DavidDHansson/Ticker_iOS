@@ -17,12 +17,11 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     var router: (NSObjectProtocol & SettingsRoutingLogic & SettingsDataPassing)?
     
     private let tableView: UITableView = {
-        let t = UITableView(frame: .zero, style: .grouped)
+        let t = UITableView(frame: .zero, style: .insetGrouped)
         t.backgroundColor = .clear
         t.rowHeight = 50
-        t.separatorStyle = .none
+        t.separatorStyle = .singleLine
         t.showsVerticalScrollIndicator = false
-        t.allowsSelection = false
         t.allowsMultipleSelection = false
         t.register(SettingsTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "SettingsTableViewHeader")
         t.register(SettingsTableViewCell.self, forCellReuseIdentifier: "SettingsTableViewCell")
@@ -66,10 +65,14 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     
     // MARK: View lifecycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Indstillinger"
         view.backgroundColor = UIColor.Ticker.viewBackgroundColor
         
         // Add subviews
@@ -81,6 +84,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         // Setup delegates
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Add header to view
+        addViewHeaderBar()
         
     }
     
@@ -113,16 +119,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell") as? SettingsTableViewCell  else { return UITableViewCell(frame: .zero) }
         let setting = settings[indexPath.section][indexPath.row]
-        
-        switch indexPath.row {
-        case 0:
-            cell.configure(withViewModel: .init(title: setting.title, position: .first, type: setting.type))
-        case settings[indexPath.section].count - 1:
-            cell.configure(withViewModel: .init(title: setting.title, position: .last, type: setting.type))
-        default:
-            cell.configure(withViewModel: .init(title: setting.title, position: .middle, type: setting.type))
-        }
-        
+        cell.configure(withViewModel: .init(title: setting.title, type: setting.type))
         return cell
     }
     
@@ -131,4 +128,16 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         return view
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
 }

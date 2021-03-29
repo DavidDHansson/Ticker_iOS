@@ -38,5 +38,6 @@ extension UIColor {
         static let articleBorderColor = UIColor(named: "articleBorderColor")!
         static let articleDateColor = UIColor(named: "articleDateColor")
         static let buttonColor = UIColor(named: "buttonColor")!
+        static let subTitleColor = UIColor(named: "subTitleColor")
     }
 }
