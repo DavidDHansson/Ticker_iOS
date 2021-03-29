@@ -42,6 +42,14 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
+        // Feedback
+        let index = tabBar.items?.firstIndex(of: item)
+        if index != selectedIndex {
+            let generator = UIImpactFeedbackGenerator(style: .soft)
+            generator.impactOccurred()
+        }
+        
+        // Scroll to top
         guard item.title == "Forside", selectedIndex == 0 else { return }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scrollToTop"), object: nil, userInfo: nil)
     }
