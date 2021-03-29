@@ -124,9 +124,9 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
     
     @objc private func scrollToTop() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: { [weak self] in
-            self?.tableView.setContentOffset(.zero, animated: true)
-        })
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.setContentOffset(.zero, animated: true)   
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
