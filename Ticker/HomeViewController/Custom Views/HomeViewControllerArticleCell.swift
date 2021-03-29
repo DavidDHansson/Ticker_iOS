@@ -47,6 +47,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
     private let articleImageView: UIImageView = {
         let i = UIImageView(frame: .zero)
         i.contentMode = .scaleAspectFill
+        i.clipsToBounds = true
         return i
     }()
     
@@ -213,7 +214,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         articleImageViewHeightConstraint.isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: articleImageView.bottomAnchor, constant: 8).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: articleImageView.bottomAnchor, constant: 5).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: articleView.leadingAnchor, constant: 5).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: articleView.trailingAnchor, constant: -5).isActive = true
         titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
