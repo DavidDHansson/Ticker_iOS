@@ -39,5 +39,6 @@ extension UIColor {
         static let articleDateColor = UIColor(named: "articleDateColor")
         static let buttonColor = UIColor(named: "buttonColor")!
         static let subTitleColor = UIColor(named: "subTitleColor")
+        static let settingsCellBackgroundColor = UIColor(named: "settingsCellBackgroundColor")
     }
 }

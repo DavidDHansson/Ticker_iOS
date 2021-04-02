@@ -99,9 +99,6 @@ class HomeViewControllerArticleCell: UITableViewCell {
         return b
     }()
     
-    public var openArticle: (() -> Void)?
-    public var openProvider: (() -> Void)?
-    
     private var articleImageViewHeightConstraint: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

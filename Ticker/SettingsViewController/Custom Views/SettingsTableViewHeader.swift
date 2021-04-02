@@ -24,16 +24,23 @@ class SettingsTableViewHeader: UITableViewHeaderFooterView {
     private let iconView: UIImageView = {
         let v = UIImageView(frame: .zero)
         v.image = UIImage(named: "logo")
+        v.clipsToBounds = true
+        v.backgroundColor = .clear
         return v
     }()
     
     private let versionLabel: UILabel = {
         let l = UILabel(frame: .zero)
-        l.font = Font.SanFranciscoDisplay.regular.size(11)
         l.textColor = UIColor.Ticker.subTitleColor
+        l.numberOfLines = 0
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-        l.text = "Version: \(appVersion ?? "") - Build \(build ?? "")"
+        let string = NSMutableAttributedString()
+        let v = NSAttributedString(string: "Version: \(appVersion ?? "") - Build \(build ?? "")", attributes: [NSAttributedString.Key.font: Font.SanFranciscoDisplay.regular.size(11)])
+        let sub = NSAttributedString(string: "\nProg Eksamensprojekt - 2021", attributes: [NSAttributedString.Key.font: Font.SanFranciscoDisplay.regular.size(8)])
+        string.append(v)
+        string.append(sub)
+        l.attributedText = string
         return l
     }()
     
@@ -51,7 +58,7 @@ class SettingsTableViewHeader: UITableViewHeaderFooterView {
         
         backgroundColor = .clear
         contentView.backgroundColor = .clear
-        mainContentView.backgroundColor = UIColor.Ticker.subViewBackgroundColor
+        mainContentView.backgroundColor = UIColor.Ticker.settingsCellBackgroundColor
         
         // Add subviews
         contentView.addSubview(mainContentView)
