@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol SettingsRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToShareApp()
 }
 
 protocol SettingsDataPassing {
@@ -17,37 +17,24 @@ protocol SettingsDataPassing {
 }
 
 class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
+    
     weak var viewController: SettingsViewController?
     var dataStore: SettingsDataStore?
     
     // MARK: Routing
+    func routeToShareApp() {
+        let firstActivityItem = "Hey, tjek appen Ticker ud! Den samler alle de vigtige finans og krypto nyheder på et sted!"
+        let secondActivityItem: URL = URL(string: "https://4hansson.dk")!
+
+        let activityViewController : UIActivityViewController = UIActivityViewController(
+            activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
+
+        // iPad stuff
+        activityViewController.popoverPresentationController?.sourceView = viewController?.view
+        activityViewController.popoverPresentationController?.permittedArrowDirections = .any
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+
+        viewController?.present(activityViewController, animated: true, completion: nil)
+    }
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
-    
-    // MARK: Navigation
-    
-    //func navigateToSomewhere(source: SettingsViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
-    // MARK: Passing data
-    
-    //func passDataToSomewhere(source: SettingsDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
 }

@@ -28,12 +28,13 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         return t
     }()
     
-    let settings: [[Settings.Setting]] = [
-        [.init(title: "Åben i Safari", type: .openInSafari),
-         .init(title: "Del med en ven", type: .share)],
-        [.init(title: "euroinvester", type: .provider("euroinvester")),
-        .init(title: "r/stocks", type: .provider("r/stocks")),
-        .init(title: "DR Penge", type: .provider("dr"))]
+    // TODO: Automate this
+    var settings: [[Settings.Setting]] = [
+        [.init(title: "Åben i Safari", type: .openInSafari, isOn: UserDefaults.standard.bool(forKey: "shouldOpenInSafari")),
+         .init(title: "Del med en ven", type: .share, isOn: nil)],
+        [.init(title: "euroinvester", type: .provider("euroinvester"), isOn: true),
+         .init(title: "r/stocks", type: .provider("r/stocks"), isOn: true),
+         .init(title: "DR Penge", type: .provider("dr"), isOn: true)]
     ]
     
     // MARK: Object lifecycle
@@ -98,6 +99,22 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
+    private func updateAction(withIndexPath indexPath: IndexPath) {
+        let setting = settings[indexPath.section][indexPath.row]
+        guard let isOn = setting.isOn else { return }
+        settings[indexPath.section][indexPath.row].isOn = !isOn
+        
+        switch setting.type {
+        case .openInSafari:
+            UserDefaults.standard.setValue(!isOn, forKey: "shouldOpenInSafari")
+        case .provider( _):
+            // TODO: Update with userdefaults
+            return
+        default:
+            return
+        }
+    }
+    
     // MARK: Display something
     
     func displaySomething(viewModel: Settings.Something.ViewModel) {
@@ -119,7 +136,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell") as? SettingsTableViewCell  else { return UITableViewCell(frame: .zero) }
         let setting = settings[indexPath.section][indexPath.row]
-        cell.configure(withViewModel: .init(title: setting.title, type: setting.type))
+        cell.configure(withViewModel: .init(title: setting.title, isOn: setting.isOn))
+        cell.switchDidChangeAction = { [weak self] in
+            self?.updateAction(withIndexPath: indexPath)
+        }
         return cell
     }
     
@@ -130,6 +150,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let setting = settings[indexPath.section][indexPath.row]
+        guard setting.type == .share else { return }
+        self.router?.routeToShareApp()
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

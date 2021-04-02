@@ -11,7 +11,7 @@ class SettingsTableViewCell: UITableViewCell {
 
     struct ViewModel {
         let title: String
-        let type: Settings.SettingType
+        let isOn: Bool?
     }
     
     private let titleLabel: UILabel = {
@@ -23,6 +23,7 @@ class SettingsTableViewCell: UITableViewCell {
     private let stateSwitch: UISwitch = {
         let s = UISwitch(frame: .zero)
         s.onTintColor = UIColor.Ticker.mainColor
+        s.thumbTintColor = UIColor.Ticker.mainColorReversed
         return s
     }()
     
@@ -31,6 +32,8 @@ class SettingsTableViewCell: UITableViewCell {
         titleLabel.text = nil
         stateSwitch.isHidden = false
     }
+    
+    public var switchDidChangeAction: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,6 +44,9 @@ class SettingsTableViewCell: UITableViewCell {
 
         // Define layout
         defineLayout()
+        
+        // Switch Target
+        stateSwitch.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
     }
     
     private func defineLayout() {
@@ -58,7 +64,15 @@ class SettingsTableViewCell: UITableViewCell {
     
     public func configure(withViewModel viewModel: ViewModel) {
         titleLabel.text = viewModel.title
-        stateSwitch.isHidden = viewModel.type == .share
+        guard let isOn = viewModel.isOn else {
+            stateSwitch.isHidden = true
+            return
+        }
+        stateSwitch.isOn = isOn
+    }
+    
+    @objc func switchChanged() {
+        switchDidChangeAction?()
     }
     
     required init?(coder: NSCoder) {

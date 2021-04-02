@@ -14,6 +14,7 @@ enum Settings {
     struct Setting {
         let title: String
         let type: SettingType
+        var isOn: Bool?
     }
     
     enum SettingType: Equatable {
