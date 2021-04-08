@@ -136,7 +136,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         guard distanceFromBottom < height else { return }
-        guard page == 0 || (page + 1) * 30 == (viewModel?.articles?.count ?? 0) else { return }
+        guard page == 0 || (page + 1) * 40 == (viewModel?.articles?.count ?? 0) else { return }
         
         page += 1
         interactor?.fetchContent(request: .init(page: page))
