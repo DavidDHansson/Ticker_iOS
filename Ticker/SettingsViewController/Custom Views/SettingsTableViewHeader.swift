@@ -37,7 +37,7 @@ class SettingsTableViewHeader: UITableViewHeaderFooterView {
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         let string = NSMutableAttributedString()
         let v = NSAttributedString(string: "Version: \(appVersion ?? "") - Build \(build ?? "")", attributes: [NSAttributedString.Key.font: Font.SanFranciscoDisplay.regular.size(11)])
-        let sub = NSAttributedString(string: "\nProg Eksamensprojekt - 2021", attributes: [NSAttributedString.Key.font: Font.SanFranciscoDisplay.regular.size(8)])
+        let sub = NSAttributedString(string: "\nProg Eksamensprojekt - 2021", attributes: [NSAttributedString.Key.font: Font.SanFranciscoDisplay.regular.size(10)])
         string.append(v)
         string.append(sub)
         l.attributedText = string
