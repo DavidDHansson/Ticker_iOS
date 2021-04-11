@@ -31,10 +31,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     // TODO: Automate this
     var settings: [[Settings.Setting]] = [
         [.init(title: "Åben i Safari", type: .openInSafari, isOn: UserDefaults.standard.bool(forKey: "shouldOpenInSafari")),
-         .init(title: "Del med en ven", type: .share, isOn: nil)],
-        [.init(title: "euroinvester", type: .provider("euroinvester"), isOn: true),
-         .init(title: "r/stocks", type: .provider("r/stocks"), isOn: true),
-         .init(title: "DR Penge", type: .provider("dr"), isOn: true)]
+         .init(title: "Del med en ven", type: .share, isOn: nil)]
     ]
     
     // MARK: Object lifecycle
@@ -89,6 +86,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         // Add header to view
         addViewHeaderBar()
         
+        fetchProviders()
     }
     
     private func defineLayout() {
@@ -107,12 +105,28 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         switch setting.type {
         case .openInSafari:
             UserDefaults.standard.setValue(!isOn, forKey: "shouldOpenInSafari")
-        case .provider( _):
-            // TODO: Update with userdefaults
-            return
+        case .provider(let provider):
+            var excludedProviders = UserDefaults.standard.array(forKey: "excludedProviders") ?? []
+            isOn ? excludedProviders.append(provider) : excludedProviders.removeAll(where: { ($0 as? String) ?? "" == provider })
+            UserDefaults.standard.setValue(excludedProviders, forKey: "excludedProviders")
+            print(excludedProviders)
         default:
             return
         }
+    }
+    
+    private func fetchProviders() {
+        
+        // TODO: This should come from an api call
+        struct SettingProvider {
+            let title: String
+            let id: String
+        }
+        let providers: [SettingProvider] = [.init(title: "euroinvester", id: "euroinvester"), .init(title: "r/stocks", id: "reddit"), .init(title: "DR Penge", id: "dr")]
+        
+        let excludedProviders = (UserDefaults.standard.array(forKey: "excludedProviders") as? [String]) ?? [String]()
+        let set: [Settings.Setting] = providers.map { Settings.Setting(title: $0.title, type: .provider($0.id), isOn: !excludedProviders.contains($0.id)) }
+        settings.append(set)
     }
     
     // MARK: Display something
