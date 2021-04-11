@@ -109,7 +109,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
             var excludedProviders = UserDefaults.standard.array(forKey: "excludedProviders") ?? []
             isOn ? excludedProviders.append(provider) : excludedProviders.removeAll(where: { ($0 as? String) ?? "" == provider })
             UserDefaults.standard.setValue(excludedProviders, forKey: "excludedProviders")
-            print(excludedProviders)
         default:
             return
         }
