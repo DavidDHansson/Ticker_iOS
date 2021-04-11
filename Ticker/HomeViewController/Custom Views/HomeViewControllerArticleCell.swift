@@ -9,9 +9,9 @@ import UIKit
 import AlamofireImage
 
 protocol HomeViewControllerArticleCellDelegate: class {
-    
-    func openURL(_ rawURL: String?)
+    func openURLInApp(_ rawURL: String?)
     func openURLInSafari(_ rawURL: String?)
+    func openURL(_ rawURL: String?)
     func share(withURL rawURL: String?, withTitle title: String?)
     func presentMenuSheet(withSheet sheet: ActionSheetController)
 }
@@ -136,7 +136,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
 
         // Targets
         articleView.isUserInteractionEnabled = true
-        articleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openInBrowser)))
+        articleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openArticle)))
         dotMenuButton.isUserInteractionEnabled = true
         dotMenuButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openMenu)))
         providerLogoButton.addTarget(self, action: #selector(providerTapped), for: .touchUpInside)
@@ -264,7 +264,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
     @objc private func openMenu() {
         let actionSheet = ActionSheetController()
         let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i App"), image: UIImage(systemName: "app"), style: .default, handler: { [weak self] in
-            self?.delegate?.openURL(self?.url)
+            self?.delegate?.openURLInApp(self?.url)
         })
         let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), image: UIImage(systemName: "safari"), style: .default, handler: { [weak self] in
             self?.delegate?.openURLInSafari(self?.url)
@@ -281,7 +281,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
         delegate?.openURL(providerURL)
     }
     
-    @objc func openInBrowser() {
+    @objc func openArticle() {
         delegate?.openURL(url)
     }
     

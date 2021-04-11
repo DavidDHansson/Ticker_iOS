@@ -213,6 +213,18 @@ extension HomeViewController: UIContextMenuInteractionDelegate {
 }
 
 extension HomeViewController: HomeViewControllerArticleCellDelegate {
+    
+    func openURLInApp(_ rawURL: String?) {
+        guard let url = URL(string: rawURL ?? ""), UIApplication.shared.canOpenURL(url) else {
+            presentSimpleAlert(withTitle: "Error opening link", withMessage: nil, completion: nil)
+            return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true, completion: nil)
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+    }
+    
     func openURLInSafari(_ rawURL: String?) {
         guard let url = URL(string: rawURL ?? "") else { return }
         UIApplication.shared.open(url)
@@ -233,15 +245,13 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
         sheet.present(on: self)
     }
     
-    func openURL(_ urlRaw: String?) {
-        guard let url = URL(string: urlRaw ?? ""), UIApplication.shared.canOpenURL(url) else {
-            presentSimpleAlert(withTitle: "Error opening link", withMessage: nil, completion: nil)
-            return
+    func openURL(_ rawURL: String?) {
+        switch UserDefaults.standard.bool(forKey: "shouldOpenInSafari") {
+        case true:
+            openURLInSafari(rawURL)
+        case false:
+            openURLInApp(rawURL)
         }
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true, completion: nil)
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
     }
     
 }
