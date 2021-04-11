@@ -11,6 +11,11 @@ import UIKit
 enum Settings {
     // MARK: Use cases
     
+    struct SettingsProvider: Decodable {
+        let title: String
+        let id: String
+    }
+    
     struct Setting {
         let title: String
         let type: SettingType
@@ -23,12 +28,16 @@ enum Settings {
         case provider(String)
     }
     
-    enum Something {
+    enum Provider {
         struct Request {
         }
         struct Response {
+            let error: Error?
+            let providers: [SettingsProvider]?
         }
         struct ViewModel {
+            let error: Error?
+            let providers: [SettingsProvider]?
         }
     }
 }

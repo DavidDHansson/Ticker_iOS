@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SettingsDisplayLogic: class {
-    func displaySomething(viewModel: Settings.Something.ViewModel)
+    func displayProviders(viewModel: Settings.Provider.ViewModel)
 }
 
 class SettingsViewController: UIViewController, SettingsDisplayLogic {
@@ -86,7 +86,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         // Add header to view
         addViewHeaderBar()
         
-        fetchProviders()
+        interactor?.fetchProviders(request: .init())
     }
     
     private func defineLayout() {
@@ -115,24 +115,16 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         }
     }
     
-    private func fetchProviders() {
-        
-        // TODO: This should come from an api call
-        struct SettingProvider {
-            let title: String
-            let id: String
+    func displayProviders(viewModel: Settings.Provider.ViewModel) {
+        guard let providers = viewModel.providers else {
+            presentSimpleAlert(withTitle: "Error", withMessage: viewModel.error?.localizedDescription ?? "", completion: nil)
+            return
         }
-        let providers: [SettingProvider] = [.init(title: "euroinvester", id: "euroinvester"), .init(title: "r/stocks", id: "reddit"), .init(title: "DR Penge", id: "dr")]
         
         let excludedProviders = (UserDefaults.standard.array(forKey: "excludedProviders") as? [String]) ?? [String]()
-        let set: [Settings.Setting] = providers.map { Settings.Setting(title: $0.title, type: .provider($0.id), isOn: !excludedProviders.contains($0.id)) }
-        settings.append(set)
-    }
-    
-    // MARK: Display something
-    
-    func displaySomething(viewModel: Settings.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+        let providerSettings: [Settings.Setting] = providers.map { Settings.Setting(title: $0.title, type: .provider($0.id), isOn: !excludedProviders.contains($0.id)) }
+        settings.append(providerSettings)
+        tableView.reloadData()
     }
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SettingsBusinessLogic {
-    func doSomething(request: Settings.Something.Request)
+    func fetchProviders(request: Settings.Provider.Request)
 }
 
 protocol SettingsDataStore {
@@ -21,13 +21,20 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
     var worker: SettingsWorker?
     //var name: String = ""
     
-    // MARK: Do something
     
-    func doSomething(request: Settings.Something.Request) {
-        worker = SettingsWorker()
-        worker?.doSomeWork()
+    func fetchProviders(request: Settings.Provider.Request) {
         
-        let response = Settings.Something.Response()
-        presenter?.presentSomething(response: response)
+        let request = APIRequest(endpoint: "providers", method: .get, parameters: nil)
+        
+        APIManager.shared.callAPI(of: [Settings.SettingsProvider].self, withRequest: request, completion: { [weak self] (result) in
+            switch result {
+            case .success(let providers):
+                let response = Settings.Provider.Response(error: nil, providers: providers)
+                self?.presenter?.presentProviders(response: response)
+            case .failure(let error):
+                let response = Settings.Provider.Response(error: error, providers: nil)
+                self?.presenter?.presentProviders(response: response)
+            }
+        })
     }
 }
