@@ -258,6 +258,8 @@ class HomeViewControllerArticleCell: UITableViewCell {
     private func formatHTMLEntities(onText text: String) -> String {
         var newText = text
         newText = newText.replacingOccurrences(of: "&amp;", with: "&")
+        newText = newText.replacingOccurrences(of: "&gt;", with: ">")
+        newText = newText.replacingOccurrences(of: "&lt;", with: "<")
         return newText
     }
     
