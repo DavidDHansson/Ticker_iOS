@@ -128,6 +128,8 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     
 }
 
+// MARK: UITableViewDelegate
+
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

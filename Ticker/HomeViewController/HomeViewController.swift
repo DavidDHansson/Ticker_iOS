@@ -155,6 +155,8 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     }
 }
 
+// MARK: UITableViewDelegate
+
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource, SkeletonTableViewDataSource {
     
     func numSections(in collectionSkeletonView: UITableView) -> Int {
@@ -187,6 +189,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Skelet
     }
 }
 
+// MARK: UIContextMenu
+
 extension HomeViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         return nil
@@ -211,6 +215,8 @@ extension HomeViewController: UIContextMenuInteractionDelegate {
         return menuConfiguration
     }
 }
+
+// MARK: CellDelegate
 
 extension HomeViewController: HomeViewControllerArticleCellDelegate {
     

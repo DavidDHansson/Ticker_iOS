@@ -23,8 +23,6 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     var articles: [Article] = []
     
     func fetchContent(request: Home.Articles.Request) {
-    
-        // TODO: update the per amount on every api call, if call maybe is 39, so infinit scroll is possible
         
         // If first page
         if request.page == 0 {
