@@ -16,7 +16,13 @@ class HomePresenter: HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
     
     func presentArticles(response: Home.Articles.Response) {
-        let viewModel = Home.Articles.ViewModel(articles: response.articles, page: response.page, errorDescription: response.error.debugDescription == "nil" ? nil : response.error.debugDescription)
+        
+        if let error = response.error {
+            let viewModel = Home.Articles.ViewModel(articles: nil, page: response.page, errorDescription: error.localizedDescription)
+            viewController?.displayArticles(viewModel: viewModel)
+        }
+        
+        let viewModel = Home.Articles.ViewModel(articles: response.articles, page: response.page, errorDescription: nil)
         viewController?.displayArticles(viewModel: viewModel)
     }
     
