@@ -20,6 +20,7 @@ class HomePresenter: HomePresentationLogic {
         if let error = response.error {
             let viewModel = Home.Articles.ViewModel(articles: nil, page: response.page, errorDescription: error.localizedDescription)
             viewController?.displayArticles(viewModel: viewModel)
+            return
         }
         
         let viewModel = Home.Articles.ViewModel(articles: response.articles, page: response.page, errorDescription: nil)
