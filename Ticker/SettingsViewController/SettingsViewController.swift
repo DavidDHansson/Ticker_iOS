@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SettingsDisplayLogic: class {
+protocol SettingsDisplayLogic: AnyObject {
     func displayProviders(viewModel: Settings.Provider.ViewModel)
 }
 

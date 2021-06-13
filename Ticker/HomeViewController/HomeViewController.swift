@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 import SkeletonView
 
-protocol HomeDisplayLogic: class {
+protocol HomeDisplayLogic: AnyObject {
     func displayArticles(viewModel: Home.Articles.ViewModel)
 }
 
