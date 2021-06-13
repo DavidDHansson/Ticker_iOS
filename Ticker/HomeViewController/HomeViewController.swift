@@ -228,7 +228,7 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
             return
         }
         
-        var savedArticles = UserDefaults.standard.array(forKey: "savedArticles") as? [Article] ?? [Article]()
+        var savedArticles: [Article] = UserDefaults.standard.structArrayData(Article.self, forKey: "savedArticles")
         let isArticleSaved = savedArticles.contains { $0.id == id }
         
         let actionSheet = ActionSheetController()
@@ -240,11 +240,11 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
         })
         let saveAction = ActionSheetAction(title: NSAttributedString(string: "Gem artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: {
             savedArticles.append(article)
-            // TODO: Save with userdefaults
+            UserDefaults.standard.setStructArray(savedArticles, forKey: "savedArticles")
         })
-        let unSaveAction = ActionSheetAction(title: NSAttributedString(string: "Fjern gemt artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: {
+        let unSaveAction = ActionSheetAction(title: NSAttributedString(string: "Fjern gemt artikel"), image: UIImage(systemName: "bookmark.slash"), style: .default, handler: {
             savedArticles.removeAll(where: { $0.id == id })
-            // TODO: Save with userdefaults
+            UserDefaults.standard.setStructArray(savedArticles, forKey: "savedArticles")
         })
         let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), image: UIImage(systemName: "square.and.arrow.up"), style: .default, handler: { [weak self] in
             self?.share(withURL: article.link, withTitle: article.title)

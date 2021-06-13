@@ -59,6 +59,7 @@
 		EBB830F22676751A0071D971 /* SavedArticlesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830EC2676751A0071D971 /* SavedArticlesModels.swift */; };
 		EBB830F32676751A0071D971 /* SavedArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830ED2676751A0071D971 /* SavedArticlesViewController.swift */; };
 		EBB830F42676751A0071D971 /* SavedArticlesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830EE2676751A0071D971 /* SavedArticlesInteractor.swift */; };
+		EBB830F6267695EF0071D971 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830F5267695EF0071D971 /* UserDefaults+Extensions.swift */; };
 		EBCCFA7F260273BC008572E3 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */; };
 		EBCCFA82260275AA008572E3 /* SettingsTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */; };
 		EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */; };
@@ -128,6 +129,7 @@
 		EBB830EC2676751A0071D971 /* SavedArticlesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesModels.swift; sourceTree = "<group>"; };
 		EBB830ED2676751A0071D971 /* SavedArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesViewController.swift; sourceTree = "<group>"; };
 		EBB830EE2676751A0071D971 /* SavedArticlesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesInteractor.swift; sourceTree = "<group>"; };
+		EBB830F5267695EF0071D971 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewHeader.swift; sourceTree = "<group>"; };
 		EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			children = (
 				EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */,
 				EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */,
+				EBB830F5267695EF0071D971 /* UserDefaults+Extensions.swift */,
 				EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */,
 				EBD849DB25DDA7FE0055805C /* UIView+Extensions.swift */,
 				EBABAA4B25E984C600E78653 /* UIFont+Extensions.swift */,
@@ -552,6 +555,7 @@
 				EBB830F22676751A0071D971 /* SavedArticlesModels.swift in Sources */,
 				EBCCFA7F260273BC008572E3 /* SettingsTableViewCell.swift in Sources */,
 				EB1C451F25FFE1FB005E86E0 /* ActionSheetController.swift in Sources */,
+				EBB830F6267695EF0071D971 /* UserDefaults+Extensions.swift in Sources */,
 				EB11C9A325C196C0009E128C /* HomeWorker.swift in Sources */,
 				EB1C452625FFE5C0005E86E0 /* ActionSheetTitleDetailHeaderView.swift in Sources */,
 				EB1E176225FFD30B00BEA1FA /* UIViewController+Extensions.swift in Sources */,
