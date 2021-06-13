@@ -228,6 +228,9 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
             return
         }
         
+        var savedArticles = UserDefaults.standard.array(forKey: "savedArticles") as? [Article] ?? [Article]()
+        let isArticleSaved = savedArticles.contains { $0.id == id }
+        
         let actionSheet = ActionSheetController()
         let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i app"), image: UIImage(systemName: "app"), style: .default, handler: { [weak self] in
             self?.openURLInApp(article.link)
@@ -235,13 +238,18 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
         let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), image: UIImage(systemName: "safari"), style: .default, handler: { [weak self] in
             self?.openURLInSafari(article.link)
         })
-        let saveAction = ActionSheetAction(title: NSAttributedString(string: "Gem artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: { [weak self] in
-            // TODO: Save or Unsave
+        let saveAction = ActionSheetAction(title: NSAttributedString(string: "Gem artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: {
+            savedArticles.append(article)
+            // TODO: Save with userdefaults
+        })
+        let unSaveAction = ActionSheetAction(title: NSAttributedString(string: "Fjern gemt artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: {
+            savedArticles.removeAll(where: { $0.id == id })
+            // TODO: Save with userdefaults
         })
         let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), image: UIImage(systemName: "square.and.arrow.up"), style: .default, handler: { [weak self] in
             self?.share(withURL: article.link, withTitle: article.title)
         })
-        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, saveAction, shareAction])
+        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, isArticleSaved ? unSaveAction : saveAction, shareAction])
         
         actionSheet.present(on: self)
     }
