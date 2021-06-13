@@ -8,10 +8,11 @@
 import UIKit
 import AlamofireImage
 
-protocol HomeViewControllerArticleCellDelegate: class {
+protocol HomeViewControllerArticleCellDelegate: AnyObject {
     func openURLInApp(_ rawURL: String?)
     func openURLInSafari(_ rawURL: String?)
     func openURL(_ rawURL: String?)
+    func saveArticle(withViewModel viewModel: HomeViewControllerArticleCell.ViewModel)
     func share(withURL rawURL: String?, withTitle title: String?)
     func presentMenuSheet(withSheet sheet: ActionSheetController)
 }
@@ -19,6 +20,7 @@ protocol HomeViewControllerArticleCellDelegate: class {
 class HomeViewControllerArticleCell: UITableViewCell {
 
     struct ViewModel {
+        let id: String
         let title: String
         let image: String?
         let url: String?
@@ -30,9 +32,7 @@ class HomeViewControllerArticleCell: UITableViewCell {
     }
     
     public weak var delegate: HomeViewControllerArticleCellDelegate?
-    var url: String?
-    var title: String?
-    var providerURL: String?
+    var viewModel: ViewModel?
     
     private var titleLabel: UILabel = {
         let l = UILabel(frame: .zero)
@@ -232,10 +232,8 @@ class HomeViewControllerArticleCell: UITableViewCell {
         dateLabel.text = viewModel.displayDate
         providerButton.setTitle(viewModel.provider, for: .normal)
         providerInfoButton.setTitle(viewModel.providerInfo, for: .normal)
-        
-        url = viewModel.url
-        title = viewModel.title
-        providerURL = viewModel.providerURL
+
+        self.viewModel = viewModel
         
         if let providerURL = URL(string: viewModel.providerImage) {
             providerLogoButton.af.setImage(for: .normal, url: providerURL)
@@ -264,27 +262,34 @@ class HomeViewControllerArticleCell: UITableViewCell {
     }
     
     @objc private func openMenu() {
+        
+        // TODO: Check if article is already saved
+        
         let actionSheet = ActionSheetController()
-        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i App"), image: UIImage(systemName: "app"), style: .default, handler: { [weak self] in
-            self?.delegate?.openURLInApp(self?.url)
+        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i app"), image: UIImage(systemName: "app"), style: .default, handler: { [weak self] in
+            self?.delegate?.openURLInApp(self?.viewModel?.url)
         })
         let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), image: UIImage(systemName: "safari"), style: .default, handler: { [weak self] in
-            self?.delegate?.openURLInSafari(self?.url)
+            self?.delegate?.openURLInSafari(self?.viewModel?.url)
+        })
+        let saveAction = ActionSheetAction(title: NSAttributedString(string: "Gem artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: { [weak self] in
+            guard let viewModel = self?.viewModel else { return }
+            self?.delegate?.saveArticle(withViewModel: viewModel)
         })
         let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), image: UIImage(systemName: "square.and.arrow.up"), style: .default, handler: { [weak self] in
-            self?.delegate?.share(withURL: self?.url, withTitle: self?.title)
+            self?.delegate?.share(withURL: self?.viewModel?.url, withTitle: self?.viewModel?.title)
         })
-        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, shareAction])
+        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, saveAction, shareAction])
         
         delegate?.presentMenuSheet(withSheet: actionSheet)
     }
     
     @objc func providerTapped() {
-        delegate?.openURL(providerURL)
+        delegate?.openURL(viewModel?.providerURL)
     }
     
     @objc func openArticle() {
-        delegate?.openURL(url)
+        delegate?.openURL(viewModel?.url)
     }
     
     required init?(coder: NSCoder) {

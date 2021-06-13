@@ -236,6 +236,10 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
         UIApplication.shared.open(url)
     }
     
+    func saveArticle(withViewModel viewModel: HomeViewControllerArticleCell.ViewModel) {
+        
+    }
+    
     func share(withURL rawURL: String?, withTitle title: String?) {
         guard let url = rawURL, let shareURL = NSURL(string: url) else { return }
         let shareTitle = "Nyhed fra Ticker Appen: \(title ?? "")\n\n"
