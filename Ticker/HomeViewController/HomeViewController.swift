@@ -206,10 +206,7 @@ extension HomeViewController: UIContextMenuInteractionDelegate {
             let openInSafariAction = UIAction(title: "Åben i Safari", image: UIImage(systemName: "safari"), handler: { [weak self] _ in
                 self?.openURLInSafari(article.link)
             })
-            let shareAction = UIAction(title: "Del", image: UIImage(systemName: "square.and.arrow.up"), handler: { [weak self] _ in
-                self?.share(withURL: article.link, withTitle: article.title)
-            })
-            return UIMenu(title: "", children: [openInAppAction, openInSafariAction, shareAction])
+            return UIMenu(title: "", children: [openInAppAction, openInSafariAction])
         })
         
         return menuConfiguration

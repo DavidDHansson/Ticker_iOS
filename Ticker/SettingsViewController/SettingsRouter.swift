@@ -45,6 +45,7 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
         vc.hidesBottomBarWhenPushed = true
         
         viewController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        viewController?.navigationController?.navigationBar.isTranslucent = false
         viewController?.navigationController?.navigationBar.tintColor = UIColor.Ticker.mainColor
         viewController?.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.Ticker.mainColor]
         viewController?.navigationController?.pushViewController(vc, animated: true)
