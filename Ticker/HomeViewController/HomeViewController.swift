@@ -220,7 +220,6 @@ extension HomeViewController: UIContextMenuInteractionDelegate {
 
 extension HomeViewController: HomeViewControllerArticleCellDelegate {
     
-    
     func openMenu(withId id: String) {
         
         guard let article = viewModel?.articles?.first(where: { $0.id == id }) else {
@@ -241,10 +240,14 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
         let saveAction = ActionSheetAction(title: NSAttributedString(string: "Gem artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: {
             savedArticles.append(article)
             UserDefaults.standard.setStructArray(savedArticles, forKey: "savedArticles")
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
         })
         let unSaveAction = ActionSheetAction(title: NSAttributedString(string: "Fjern gemt artikel"), image: UIImage(systemName: "bookmark.slash"), style: .default, handler: {
             savedArticles.removeAll(where: { $0.id == id })
             UserDefaults.standard.setStructArray(savedArticles, forKey: "savedArticles")
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
         })
         let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), image: UIImage(systemName: "square.and.arrow.up"), style: .default, handler: { [weak self] in
             self?.share(withURL: article.link, withTitle: article.title)
@@ -271,15 +274,14 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
         UIApplication.shared.open(url)
     }
     
-    func saveArticle(withViewModel viewModel: HomeViewControllerArticleCell.ViewModel) {
-        
-    }
-    
     func share(withURL rawURL: String?, withTitle title: String?) {
         guard let url = rawURL, let shareURL = NSURL(string: url) else { return }
         let shareTitle = "Nyhed fra Ticker Appen: \(title ?? "")\n\n"
-        var act: UIActivityViewController!
         
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        var act: UIActivityViewController!
         act = UIActivityViewController(activityItems: [shareTitle, shareURL], applicationActivities: nil)
         act.popoverPresentationController?.sourceView = view
         act.popoverPresentationController?.permittedArrowDirections = .any

@@ -62,7 +62,6 @@
 		EBB830F6267695EF0071D971 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830F5267695EF0071D971 /* UserDefaults+Extensions.swift */; };
 		EBCCFA7F260273BC008572E3 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */; };
 		EBCCFA82260275AA008572E3 /* SettingsTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */; };
-		EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */; };
 		EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795925DD3D5100043559 /* SettingsPresenter.swift */; };
 		EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795A25DD3D5100043559 /* SettingsWorker.swift */; };
 		EBCF796125DD3D5100043559 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795B25DD3D5100043559 /* SettingsRouter.swift */; };
@@ -132,7 +131,6 @@
 		EBB830F5267695EF0071D971 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewHeader.swift; sourceTree = "<group>"; };
-		EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
 		EBCF795925DD3D5100043559 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		EBCF795A25DD3D5100043559 /* SettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
 		EBCF795B25DD3D5100043559 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				EB8E783D25C19B2B00883DFD /* UIColor+Extensions.swift */,
-				EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */,
 				EBB830F5267695EF0071D971 /* UserDefaults+Extensions.swift */,
 				EBA3380225DD964E00D12457 /* CALayer+Extensions.swift */,
 				EBD849DB25DDA7FE0055805C /* UIView+Extensions.swift */,
@@ -542,7 +539,6 @@
 				EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */,
 				EBABAA3925E94F9500E78653 /* APIManagerProtocol.swift in Sources */,
 				EB1E179C25FFD9D100BEA1FA /* ActionSheetTitleHeaderView.swift in Sources */,
-				EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */,
 				EBCF796425DD3D5100043559 /* SettingsInteractor.swift in Sources */,
 				EBB830F42676751A0071D971 /* SavedArticlesInteractor.swift in Sources */,
 				EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */,

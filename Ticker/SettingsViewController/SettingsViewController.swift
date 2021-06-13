@@ -29,10 +29,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         return t
     }()
     
-    // TODO: Automate this
     var settings: [[Settings.Setting]] = [
         [.init(title: "Åben i Safari", type: .openInSafari, isOn: UserDefaults.standard.bool(forKey: "shouldOpenInSafari")),
-         .init(title: "Del med en ven", type: .share, isOn: nil), .init(title: "Gemte artikler", type: .savedArticles, isOn: nil)]
+         .init(title: "Gemte artikler", type: .savedArticles, isOn: nil), .init(title: "Del med en ven", type: .share, isOn: nil)]
     ]
     
     // MARK: Object lifecycle
@@ -66,7 +65,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidLoad() {

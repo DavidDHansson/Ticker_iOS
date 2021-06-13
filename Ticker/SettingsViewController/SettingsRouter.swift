@@ -40,7 +40,14 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
     
     func routeToSavedArticles() {
         let vc = SavedArticlesViewController()
-        viewController?.present(vc, animated: true, completion: nil)
+        
+        vc.title = "Gemte artikler"
+        vc.hidesBottomBarWhenPushed = true
+        
+        viewController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        viewController?.navigationController?.navigationBar.tintColor = UIColor.Ticker.mainColor
+        viewController?.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.Ticker.mainColor]
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     

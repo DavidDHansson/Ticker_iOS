@@ -12,7 +12,6 @@ protocol HomeViewControllerArticleCellDelegate: AnyObject {
     func openURLInApp(_ rawURL: String?)
     func openURLInSafari(_ rawURL: String?)
     func openURL(_ rawURL: String?)
-    func saveArticle(withViewModel viewModel: HomeViewControllerArticleCell.ViewModel)
     func share(withURL rawURL: String?, withTitle title: String?)
     func openMenu(withId id: String)
 }
