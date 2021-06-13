@@ -178,7 +178,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Skelet
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let article = viewModel?.articles?[indexPath.row], let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewControllerArticleCell", for: indexPath) as? HomeViewControllerArticleCell else { return UITableViewCell(frame: .zero) }
         
-        let viewModel = HomeViewControllerArticleCell.ViewModel(title: article.title ?? "", image: article.img, url: article.link, providerImage: article.providerImage, provider: article.provider, providerInfo: article.providerText, providerURL: article.providerLink, displayDate: article.displayDate)
+        let viewModel = HomeViewControllerArticleCell.ViewModel(id: article.id, title: article.title ?? "", image: article.img, url: article.link, providerImage: article.providerImage, provider: article.provider, providerInfo: article.providerText, providerURL: article.providerLink, displayDate: article.displayDate)
         cell.delegate = self
         cell.configure(withViewModel: viewModel)
         return cell
@@ -220,6 +220,33 @@ extension HomeViewController: UIContextMenuInteractionDelegate {
 
 extension HomeViewController: HomeViewControllerArticleCellDelegate {
     
+    
+    func openMenu(withId id: String) {
+        
+        guard let article = viewModel?.articles?.first(where: { $0.id == id }) else {
+            presentSimpleAlert(withTitle: "Error", withMessage: nil, completion: nil)
+            return
+        }
+        
+        let actionSheet = ActionSheetController()
+        let openAction = ActionSheetAction(title: NSAttributedString(string: "Åben i app"), image: UIImage(systemName: "app"), style: .default, handler: { [weak self] in
+            self?.openURLInApp(article.link)
+        })
+        let openInSafari = ActionSheetAction(title: NSAttributedString(string: "Åben i Safari"), image: UIImage(systemName: "safari"), style: .default, handler: { [weak self] in
+            self?.openURLInSafari(article.link)
+        })
+        let saveAction = ActionSheetAction(title: NSAttributedString(string: "Gem artikel"), image: UIImage(systemName: "bookmark"), style: .default, handler: { [weak self] in
+            // TODO: Save or Unsave
+        })
+        let shareAction = ActionSheetAction(title: NSAttributedString(string: "Del"), image: UIImage(systemName: "square.and.arrow.up"), style: .default, handler: { [weak self] in
+            self?.share(withURL: article.link, withTitle: article.title)
+        })
+        actionSheet.configure(withHeaderType: nil, actions: [openAction, openInSafari, saveAction, shareAction])
+        
+        actionSheet.present(on: self)
+    }
+    
+    
     func openURLInApp(_ rawURL: String?) {
         guard let url = URL(string: rawURL ?? ""), UIApplication.shared.canOpenURL(url) else {
             presentSimpleAlert(withTitle: "Error opening link", withMessage: nil, completion: nil)
@@ -249,10 +276,6 @@ extension HomeViewController: HomeViewControllerArticleCellDelegate {
         act.popoverPresentationController?.sourceView = view
         act.popoverPresentationController?.permittedArrowDirections = .any
         present(act, animated: true, completion: nil)
-    }
-    
-    func presentMenuSheet(withSheet sheet: ActionSheetController) {
-        sheet.present(on: self)
     }
     
     func openURL(_ rawURL: String?) {
