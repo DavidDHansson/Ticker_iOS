@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol SettingsDisplayLogic: AnyObject {
     func displayProviders(viewModel: Settings.Provider.ViewModel)
@@ -31,7 +32,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     // TODO: Automate this
     var settings: [[Settings.Setting]] = [
         [.init(title: "Åben i Safari", type: .openInSafari, isOn: UserDefaults.standard.bool(forKey: "shouldOpenInSafari")),
-         .init(title: "Del med en ven", type: .share, isOn: nil)]
+         .init(title: "Del med en ven", type: .share, isOn: nil), .init(title: "Gemte artikler", type: .savedArticles, isOn: nil)]
     ]
     
     // MARK: Object lifecycle
@@ -158,8 +159,15 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let setting = settings[indexPath.section][indexPath.row]
-        guard setting.type == .share else { return }
-        self.router?.routeToShareApp()
+        
+        switch setting.type {
+        case .share:
+            self.router?.routeToShareApp()
+        case .savedArticles:
+            self.router?.routeToSavedArticles()
+        default:
+            break
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

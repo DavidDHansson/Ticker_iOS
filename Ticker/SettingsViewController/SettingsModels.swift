@@ -25,6 +25,7 @@ enum Settings {
     enum SettingType: Equatable {
         case openInSafari
         case share
+        case savedArticles
         case provider(String)
     }
     

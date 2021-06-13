@@ -52,8 +52,10 @@ class SavedArticlesViewController: UIViewController, SavedArticlesDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request = SavedArticles.Something.Request()
-        interactor?.doSomething(request: request)
+        
+        view.backgroundColor = .white
+        
+        
     }
     
     

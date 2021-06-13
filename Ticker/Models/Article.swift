@@ -8,6 +8,7 @@
 import UIKit
 
 struct Article: Codable {
+    let id: String
     let title: String?
     let img: String?
     let link: String

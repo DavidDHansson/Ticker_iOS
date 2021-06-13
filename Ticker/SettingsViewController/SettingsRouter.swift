@@ -10,6 +10,7 @@ import UIKit
 
 @objc protocol SettingsRoutingLogic {
     func routeToShareApp()
+    func routeToSavedArticles()
 }
 
 protocol SettingsDataPassing {
@@ -36,5 +37,11 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
 
         viewController?.present(activityViewController, animated: true, completion: nil)
     }
+    
+    func routeToSavedArticles() {
+        let vc = SavedArticlesViewController()
+        viewController?.present(vc, animated: true, completion: nil)
+    }
+    
     
 }
