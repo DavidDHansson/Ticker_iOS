@@ -53,6 +53,12 @@
 		EBABAA6725E985B900E78653 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBABAA5A25E985B900E78653 /* Roboto-Black.ttf */; };
 		EBABAA6825E985B900E78653 /* SanFranciscoDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBABAA5B25E985B900E78653 /* SanFranciscoDisplay-Semibold.otf */; };
 		EBB48CDB25EBEE2B0042CC6F /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */; };
+		EBB830EF2676751A0071D971 /* SavedArticlesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830E92676751A0071D971 /* SavedArticlesPresenter.swift */; };
+		EBB830F02676751A0071D971 /* SavedArticlesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830EA2676751A0071D971 /* SavedArticlesWorker.swift */; };
+		EBB830F12676751A0071D971 /* SavedArticlesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830EB2676751A0071D971 /* SavedArticlesRouter.swift */; };
+		EBB830F22676751A0071D971 /* SavedArticlesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830EC2676751A0071D971 /* SavedArticlesModels.swift */; };
+		EBB830F32676751A0071D971 /* SavedArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830ED2676751A0071D971 /* SavedArticlesViewController.swift */; };
+		EBB830F42676751A0071D971 /* SavedArticlesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB830EE2676751A0071D971 /* SavedArticlesInteractor.swift */; };
 		EBCCFA7F260273BC008572E3 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */; };
 		EBCCFA82260275AA008572E3 /* SettingsTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */; };
 		EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */; };
@@ -116,6 +122,12 @@
 		EBABAA5A25E985B900E78653 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EBABAA5B25E985B900E78653 /* SanFranciscoDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		EBB48CDA25EBEE2B0042CC6F /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		EBB830E92676751A0071D971 /* SavedArticlesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesPresenter.swift; sourceTree = "<group>"; };
+		EBB830EA2676751A0071D971 /* SavedArticlesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesWorker.swift; sourceTree = "<group>"; };
+		EBB830EB2676751A0071D971 /* SavedArticlesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesRouter.swift; sourceTree = "<group>"; };
+		EBB830EC2676751A0071D971 /* SavedArticlesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesModels.swift; sourceTree = "<group>"; };
+		EBB830ED2676751A0071D971 /* SavedArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesViewController.swift; sourceTree = "<group>"; };
+		EBB830EE2676751A0071D971 /* SavedArticlesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesInteractor.swift; sourceTree = "<group>"; };
 		EBCCFA7E260273BC008572E3 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		EBCCFA81260275AA008572E3 /* SettingsTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewHeader.swift; sourceTree = "<group>"; };
 		EBCF795325DD32E400043559 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
@@ -178,6 +190,7 @@
 				EBA337F225DD8A8500D12457 /* Models */,
 				EBCF796625DD3D5900043559 /* SettingsViewController */,
 				EB11C98925C19474009E128C /* HomeViewController */,
+				EBB830DC267672370071D971 /* SavedArticlesViewController */,
 				EBCF797C25DD855400043559 /* Custom views */,
 				EB8E784025C19B6600883DFD /* Extensions */,
 				EBABAA4E25E985B900E78653 /* Fonts */,
@@ -311,6 +324,19 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		EBB830DC267672370071D971 /* SavedArticlesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EBB830E92676751A0071D971 /* SavedArticlesPresenter.swift */,
+				EBB830EA2676751A0071D971 /* SavedArticlesWorker.swift */,
+				EBB830EB2676751A0071D971 /* SavedArticlesRouter.swift */,
+				EBB830EC2676751A0071D971 /* SavedArticlesModels.swift */,
+				EBB830ED2676751A0071D971 /* SavedArticlesViewController.swift */,
+				EBB830EE2676751A0071D971 /* SavedArticlesInteractor.swift */,
+			);
+			path = SavedArticlesViewController;
+			sourceTree = "<group>";
+		};
 		EBCCFA7C26027308008572E3 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,7 +388,7 @@
 				EB11C96A25C191C6009E128C /* Frameworks */,
 				EB11C96B25C191C6009E128C /* Resources */,
 				EB8E785F25C19D0E00883DFD /* ShellScript */,
-				AF57319E8F0C402A28160CBB /* [CP] Embed Pods Frameworks */,
+				C9EEDF52672A10D084FE4897 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -454,7 +480,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF57319E8F0C402A28160CBB /* [CP] Embed Pods Frameworks */ = {
+		C9EEDF52672A10D084FE4897 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -505,7 +531,9 @@
 				EB11C97125C191C6009E128C /* AppDelegate.swift in Sources */,
 				EB1E178D25FFD68D00BEA1FA /* ActionSheetAction.swift in Sources */,
 				EBD849DC25DDA7FE0055805C /* UIView+Extensions.swift in Sources */,
+				EBB830EF2676751A0071D971 /* SavedArticlesPresenter.swift in Sources */,
 				EBA337FE25DD8C5A00D12457 /* HomeViewControllerArticleCell.swift in Sources */,
+				EBB830F32676751A0071D971 /* SavedArticlesViewController.swift in Sources */,
 				EBABAA4925E95CD100E78653 /* FirebaseConfigurator.swift in Sources */,
 				EB1C452325FFE2A6005E86E0 /* PanModal+Extensions.swift in Sources */,
 				EB11C9A625C196C0009E128C /* HomeViewController.swift in Sources */,
@@ -513,6 +541,7 @@
 				EB1E179C25FFD9D100BEA1FA /* ActionSheetTitleHeaderView.swift in Sources */,
 				EBCF795425DD32E400043559 /* UIWindow+Extensions.swift in Sources */,
 				EBCF796425DD3D5100043559 /* SettingsInteractor.swift in Sources */,
+				EBB830F42676751A0071D971 /* SavedArticlesInteractor.swift in Sources */,
 				EBCF796025DD3D5100043559 /* SettingsWorker.swift in Sources */,
 				EBABAA4C25E984C600E78653 /* UIFont+Extensions.swift in Sources */,
 				EBA3380325DD964E00D12457 /* CALayer+Extensions.swift in Sources */,
@@ -520,6 +549,7 @@
 				EBABAA3F25E9508200E78653 /* AlamofireDriver.swift in Sources */,
 				EB11C97325C191C6009E128C /* SceneDelegate.swift in Sources */,
 				EBABAA4625E95C4500E78653 /* APIManagerConfigurator.swift in Sources */,
+				EBB830F22676751A0071D971 /* SavedArticlesModels.swift in Sources */,
 				EBCCFA7F260273BC008572E3 /* SettingsTableViewCell.swift in Sources */,
 				EB1C451F25FFE1FB005E86E0 /* ActionSheetController.swift in Sources */,
 				EB11C9A325C196C0009E128C /* HomeWorker.swift in Sources */,
@@ -531,8 +561,10 @@
 				EB11C9A525C196C0009E128C /* HomeModels.swift in Sources */,
 				EBCF796225DD3D5100043559 /* SettingsModels.swift in Sources */,
 				EBB48CDB25EBEE2B0042CC6F /* UIImage+Extensions.swift in Sources */,
+				EBB830F02676751A0071D971 /* SavedArticlesWorker.swift in Sources */,
 				EBCF795F25DD3D5100043559 /* SettingsPresenter.swift in Sources */,
 				EBCCFA82260275AA008572E3 /* SettingsTableViewHeader.swift in Sources */,
+				EBB830F12676751A0071D971 /* SavedArticlesRouter.swift in Sources */,
 				EBCF796325DD3D5100043559 /* SettingsViewController.swift in Sources */,
 				EB1E179825FFD8C000BEA1FA /* ActionSheetHeader.swift in Sources */,
 			);
