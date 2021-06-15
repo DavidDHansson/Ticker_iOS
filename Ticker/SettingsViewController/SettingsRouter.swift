@@ -25,7 +25,7 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
     // MARK: Routing
     func routeToShareApp() {
         let firstActivityItem = "Hey, tjek appen Ticker ud! Den samler alle de vigtige finans og krypto nyheder på et sted!"
-        let secondActivityItem: URL = URL(string: "https://4hansson.dk")!
+        let secondActivityItem: URL = URL(string: "https://apps.apple.com/us/app/ticker/id1563711985#?platform=iphone")!
 
         let activityViewController : UIActivityViewController = UIActivityViewController(
             activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
