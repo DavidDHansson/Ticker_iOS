@@ -8,6 +8,7 @@
 
 import UIKit
 import SkeletonView
+import StoreKit
 
 protocol SettingsDisplayLogic: AnyObject {
     func displayProviders(viewModel: Settings.Provider.ViewModel)
@@ -30,8 +31,14 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     }()
     
     var settings: [[Settings.Setting]] = [
-        [.init(title: "Åben i Safari", type: .openInSafari, isOn: UserDefaults.standard.bool(forKey: "shouldOpenInSafari")),
-         .init(title: "Gemte artikler", type: .savedArticles, isOn: nil), .init(title: "Del med en ven", type: .share, isOn: nil)]
+        [
+            .init(title: "Del med en ven", type: .share, isOn: nil),
+            .init(title: "Giv en anmeldelse", type: .review, isOn: nil)
+        ],
+        [
+            .init(title: "Gemte artikler", type: .savedArticles, isOn: nil),
+            .init(title: "Åben i Safari", type: .openInSafari, isOn: UserDefaults.standard.bool(forKey: "shouldOpenInSafari")),
+        ]
     ]
     
     // MARK: Object lifecycle
@@ -164,6 +171,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             self.router?.routeToShareApp()
         case .savedArticles:
             self.router?.routeToSavedArticles()
+        case .review:
+            SKStoreReviewController.requestReview()
         default:
             break
         }
